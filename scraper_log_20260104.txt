@@ -271,3 +271,58 @@ UNC Wilmington Seahawks          45.4         63.5
            Fordham Rams          46.1         58.0
 [21:50:18] 
 🏁 COMPLETE in 220.1 seconds (3.7 minutes)
+[22:05:58] 
+============================================================
+[22:05:58] 🚀 ESPN SCRAPER V2.3 (DOUBLE TURBO)
+[22:05:58] ============================================================
+[22:05:58] 📅 Building schedule from 2025-11-02 to 2026-01-04...
+[22:05:58]    ⚡ Scanning 64 days of calendars in parallel...
+[22:06:03] ✅ Schedule built: Found 2983 completed games
+[22:06:03] ⚡ Downloading shot data for 2983 games...
+[22:06:11]    ✓ 100/2983 games processed... (16,387 shots)
+[22:06:19]    ✓ 200/2983 games processed... (33,065 shots)
+[22:06:26]    ✓ 300/2983 games processed... (48,744 shots)
+[22:06:33]    ✓ 400/2983 games processed... (64,933 shots)
+[22:06:41]    ✓ 500/2983 games processed... (81,134 shots)
+[22:06:48]    ✓ 600/2983 games processed... (97,008 shots)
+[22:06:54]    ✓ 700/2983 games processed... (113,201 shots)
+[22:07:01]    ✓ 800/2983 games processed... (129,373 shots)
+[22:07:08]    ✓ 900/2983 games processed... (145,638 shots)
+[22:07:15]    ✓ 1000/2983 games processed... (161,671 shots)
+[22:07:22]    ✓ 1100/2983 games processed... (177,363 shots)
+[22:07:28]    ✓ 1200/2983 games processed... (193,356 shots)
+[22:07:35]    ✓ 1300/2983 games processed... (209,546 shots)
+[22:07:42]    ✓ 1400/2983 games processed... (225,183 shots)
+[22:07:49]    ✓ 1500/2983 games processed... (240,685 shots)
+[22:07:55]    ✓ 1600/2983 games processed... (255,931 shots)
+[22:08:02]    ✓ 1700/2983 games processed... (271,582 shots)
+[22:08:09]    ✓ 1800/2983 games processed... (287,327 shots)
+[22:08:16]    ✓ 1900/2983 games processed... (303,342 shots)
+[22:08:23]    ✓ 2000/2983 games processed... (318,996 shots)
+[22:08:30]    ✓ 2100/2983 games processed... (334,710 shots)
+[22:08:37]    ✓ 2200/2983 games processed... (349,651 shots)
+[22:08:44]    ✓ 2300/2983 games processed... (363,882 shots)
+[22:08:52]    ✓ 2400/2983 games processed... (378,052 shots)
+[22:08:59]    ✓ 2500/2983 games processed... (391,896 shots)
+[22:09:06]    ✓ 2600/2983 games processed... (406,272 shots)
+[22:09:13]    ✓ 2700/2983 games processed... (420,355 shots)
+[22:09:21]    ✓ 2800/2983 games processed... (434,621 shots)
+[22:09:28]    ✓ 2900/2983 games processed... (448,910 shots)
+[22:09:34] 
+✅ Scraping complete: 460,352 shots
+[22:09:34] 🧹 Removed 1861 invalid shots (0.4%)
+[22:09:34] 
+📊 Calculating team statistics...
+[22:09:35]    ✅ Stats calculated for 718 teams
+[22:09:35] 📦 Old file backed up: C:\Users\adamc\OneDrive\Desktop\HerfLab_Deploy\cbb_style_backup_20260104_220935.csv
+[22:09:35] 💾 Saved to: C:\Users\adamc\OneDrive\Desktop\HerfLab_Deploy\cbb_style_2025_complete.csv
+[22:09:35] 
+📋 Top 5 Defensive Rim Protectors:
+[22:09:35]               play_team  opp_rim_rate  opp_rim_pct
+  South Alabama Jaguars          34.4         64.6
+   Nebraska Cornhuskers          43.9         61.6
+Louisiana Tech Bulldogs          44.7         64.3
+UNC Wilmington Seahawks          45.4         63.5
+           Fordham Rams          46.1         58.0
+[22:09:35] 
+🏁 COMPLETE in 217.1 seconds (3.6 minutes)
