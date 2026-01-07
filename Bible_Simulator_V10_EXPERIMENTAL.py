@@ -63,7 +63,7 @@ KENPOM_TRANSLATION = {
     "North Dakota State": "North Dakota St.", "Northwestern State": "Northwestern St.",
     "Ohio State": "Ohio St.", "Oklahoma State": "Oklahoma St.", "Oregon State": "Oregon St.",
     "Penn State": "Penn St.", "Portland State": "Portland St.", "Sacramento State": "Sacramento St.",
-    "Sam Houston State": "Sam Houston St.", "San Diego State": "San Diego St.",
+    "Sam Houston State": "Sam Houston St.", "San Diego State": "San Diego St.", "Ole Miss": "Mississippi",
     "San Jose State": "San Jose St.", "South Carolina State": "S.C. State", "Arkansas Little Rock": "Little Rock",
     "South Dakota State": "South Dakota St.", "Southeast Missouri State": "Southeast Missouri",
     "Tarleton State": "Tarleton St.", "Tennessee State": "Tennessee St.", "Texas State": "Texas St.",
@@ -72,7 +72,7 @@ KENPOM_TRANSLATION = {
     "North Carolina Central": "N.C. Central", "UMBC": "Maryland BC", "Detroit Mercy": "Detroit",
     "Detroit": "Detroit", "IUPUI": "IU Indy", "Long Island University": "LIU", "LIU": "LIU",
     "Saint Peter's": "Saint Peter's", "St. Peter's": "Saint Peter's", "Saint Mary's": "Saint Mary's",
-    "St. Mary's": "Saint Mary's", "Southern Illinois": "Southern Ill.", 
+    "St. Mary's": "Saint Mary's", "Southern Illinois": "Southern Ill.", "N.C. St.": "NC State",
     "California Baptist": "Cal Baptist", "Texas A&M-Corpus Christi": "Texas A&M Corpus Chris",
     "Texas A&M Corpus Christi": "Texas A&M Corpus Chris", "UMass Lowell": "Mass Lowell",
     "UT Rio Grande Valley": "UT Rio Grande Val", "Stephen F. Austin": "Stephen F. Austin",
@@ -84,8 +84,8 @@ KENPOM_TRANSLATION = {
     "Loyola Marymount": "Loyola Marymount", "Ole Miss": "Mississippi", "Mississippi": "Mississippi",
     "UConn": "Connecticut", "Pitt": "Pittsburgh", "UAB": "UAB", "UCF": "UCF", "VCU": "VCU",
     "SMU": "SMU", "TCU": "TCU", "LSU": "LSU", "BYU": "BYU","Saint Louis": "Saint Louis",
-    "Saint Joseph's": "Saint Joseph's","UT Rio Grande Val": "UT Rio Grande Valley",
-    "SIU Edwardsville": "SIUE","Tennessee-Martin": "Tennessee Martin",
+    "Saint Joseph's": "Saint Joseph's","UT Rio Grande Val": "UT Rio Grande Valley", "U.T. Rio Grande Valley": "UTRGV",
+    "SIU Edwardsville": "SIUE","Tennessee-Martin": "Tennessee Martin", "UT Rio Grande Valley": "UTRGV",
     "Iowa State Cyclones": "Iowa St.", "Georgia Bulldogs": "Georgia", "Saint Louis Billikens": "Saint Louis",
     "Michigan Wolverines": "Michigan", "Arizona Wildcats": "Arizona", "Iowa Hawkeyes": "Iowa",
     "Gonzaga Bulldogs": "Gonzaga", "Louisville Cardinals": "Louisville", "Loyola Marymount Lions": "Loyola Marymount",
@@ -107,6 +107,13 @@ KENPOM_TRANSLATION.update({
     "Illinois Fighting Illini": "Illinois",
     "Creighton Bluejays": "Creighton",
 })
+
+def standardize_name(name):
+    """
+    Look up the name in the master dictionary. 
+    If found, return the fixed version. If not, return the original.
+    """
+    return KENPOM_TRANSLATION.get(name, name)
 
 # --- VENUE-SPECIFIC HOME COURT ADVANTAGE (V9.2 Calibrated) ---
 VENUE_HCA = {
@@ -829,19 +836,25 @@ def generate_performance_report():
 # SECTION 5: TESTING & COMPARISON INTERFACE
 # ======================================================
 
-def run_comparison_test(visitor: str, home: str, 
-                       market_spread: Optional[float] = None,
-                       market_total: Optional[float] = None):
+def run_comparison_test(visitor: str, home: str,
+                        market_spread: Optional[float] = None,
+                        market_total: Optional[float] = None):
     """
     Run both V9.2 baseline and V10 experimental predictions side-by-side.
     """
+    # 1. STANDARDIZE NAMES IMMEDIATELY (The Fix)
+    # This prevents KeyErrors by converting dropdown names (e.g. "N.C. St.") 
+    # to data names (e.g. "NC State") before looking them up.
+    visitor = standardize_name(visitor)
+    home = standardize_name(home)
+
     team_stats, style_db, quad_data, eff_profiles = build_team_database()
-    
+
     if team_stats is None:
         return
-    
+
     print("\n" + "="*80)
-    print(f"🔬 EXPERIMENTAL COMPARISON: {visitor} @ {home}")
+    print(f"🧪 EXPERIMENTAL COMPARISON: {visitor} @ {home}")
     print("="*80)
     
     # V10 Experimental (with Bayesian adjustments)
