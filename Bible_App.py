@@ -7,7 +7,7 @@ from io import StringIO
 # --- IMPORT THE NEW V10 PRODUCTION ENGINE ---
 import Bible_Simulator_V10_EXPERIMENTAL as v10_engine
 
-# --- CACHING THE NEW DATABASE (Now returns 6 items) ---
+# --- CACHING THE NEW DATABASE ---
 @st.cache_data
 def load_v10_data_cached():
     """Cache the heavy V10 database loading so the app runs instantly."""
@@ -15,9 +15,6 @@ def load_v10_data_cached():
 
 # ==============================================================================
 #   THE BIBLE SCOUT V10.0 - PRODUCTION DASHBOARD
-#   Features: 
-#   - Side-by-Side: V9.2 (Baseline) vs V10 (PhD-Level)
-#   - Visualizes Bayesian & Location Adjustments
 # ==============================================================================
 
 # --- CONFIGURATION ---
@@ -27,7 +24,7 @@ except:
     import os
     KP_API_KEY = os.environ.get("KP_API_KEY", "")
     if not KP_API_KEY:
-        st.error("⚠️ KenPom API key not found. Please configure in Streamlit secrets.")
+        st.error("⚠️ KenPom API key not found.")
         st.stop()
 
 CURRENT_SEASON = 2026
@@ -72,8 +69,6 @@ st.markdown("""
     .sim-result-box { background-color: #f8fafc; border: 2px solid #4f46e5; border-radius: 12px; padding: 20px; text-align: center; margin-top: 20px; }
     .score-display { font-size: 32px; font-weight: 900; color: #1e293b; margin: 10px 0; }
     .spread-display { font-size: 18px; color: #64748b; font-weight: 600; }
-    .stat-row { display: flex; justify-content: space-between; font-size: 14px; padding: 4px 0; border-bottom: 1px solid #f0f0f0; }
-    .warning-box { background: #fff3cd; border: 1px solid #ffc107; padding: 10px; border-radius: 8px; margin: 10px 0; }
     </style>
 """, unsafe_allow_html=True)
 
@@ -240,9 +235,9 @@ elif mode == "⚔️ Hypo-Sim":
         if st.button("🔮 Simulate Matchup", type="primary"):
             if visitor and home and visitor != home:
                 
-                # --- 1. LOAD V10 DATABASE (6 ITEMS) ---
+                # --- 1. LOAD V10 DATABASE (6 ITEMS - FIXED UNPACKING) ---
                 with st.spinner("Initializing V10 Engine..."):
-                    # THIS IS THE CRITICAL UPDATE: Unpack 6 items instead of 4
+                    # This unpacks ALL 6 values returned by the new simulator
                     stats, style, quad, eff, h_perf, r_perf = load_v10_data_cached()
                 
                 if stats is None:
@@ -278,7 +273,7 @@ elif mode == "⚔️ Hypo-Sim":
 
                     # === RIGHT: V10 PRODUCTION ===
                     with col_exp:
-                        st.subheader("🧪 V10 (Quad & Home/Away Metrics)")
+                        st.subheader("🧪 V10 (Production)")
                         
                         # Calculate Deltas
                         spread_delta = results_v10['Predicted_Spread'] - results_v92['Spread']
