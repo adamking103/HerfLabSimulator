@@ -395,32 +395,50 @@ def run_simulation(v_name, h_name, stats, style, quad, eff, h_perf, r_perf, spre
     }
 
 # ======================================================
-# SECTION 4: INTERFACE & AUTOMATION
+# SECTION 4: INTERFACE
 # ======================================================
 
-# ... (Keep all your existing functions above this line) ...
+def run_comparison_test(visitor, home, spread=None, total=None):
+    visitor = standardize_name(visitor); home = standardize_name(home)
+    stats, style, quad, eff, h_perf, r_perf = build_team_database()
+    if stats is None: return
+
+    print("\n" + "="*80)
+    print(f"🧪 V10 INTEGRATED TEST: {visitor} @ {home}")
+    print("="*80)
+    
+    res = run_simulation(visitor, home, stats, style, quad, eff, h_perf, r_perf, spread, total)
+    
+    if "error" in res: print(f"❌ Error: {res['error']}"); return
+
+    # --- DISPLAY FIX: Invert sign for Betting Line Display ---
+    display_line = -res['Predicted_Spread']
+
+    print(f"\n📊 PREDICTION:")
+    print(f"   Score: {res['Visitor']} {res['V_Score']} - {res['Home']} {res['H_Score']}")
+    print(f"   Line:  {res['Home']} {display_line:+.1f}")
+    print(f"   Total: {res['Predicted_Total']:.1f}")
+    print(f"   Win%:  {res['Home_Win_Prob']}%")
+    
+    print(f"\n🧠 INTELLIGENCE:")
+    print(f"   Flags: {res['Analysis_Flags']}")
+    print(f"   Location Logic: {res['PhD_Reasoning']}")
+    
+    if res['Signals']:
+        print(f"\n💰 SIGNALS:")
+        for s in res['Signals']: print(f"   • {s}")
+    
+    print("="*80 + "\n")
 
 if __name__ == "__main__":
-    import sys
-    
-    # Load Data Once
-    stats, style, quad, eff, h_perf, r_perf = build_team_database()
-    
-    if stats is not None:
-        # CHECK FOR AUTOMATION FLAG (Added for Batch File)
-        if len(sys.argv) > 1 and sys.argv[1] == "auto":
-            print("\n🤖 AUTOMATION MODE DETECTED")
-            run_daily_automation(stats, style, quad, eff, h_perf, r_perf)
-        
-        # STANDARD INTERACTIVE MODE
-        else:
-            while True:
-                print("\nTHE BIBLE V10 (PRODUCTION)")
-                print("1. Predict Single Game")
-                print("2. Run Full Daily Schedule (FanMatch)")
-                print("3. Exit")
-                choice = input("Select: ")
-                
-                if choice == "1": run_single_game(stats, style, quad, eff, h_perf, r_perf)
-                elif choice == "2": run_daily_automation(stats, style, quad, eff, h_perf, r_perf)
-                elif choice == "3": break
+    while True:
+        print("\nTHE BIBLE V10 (INTEGRATED)")
+        print("1. Predict Game")
+        print("2. Exit")
+        choice = input("Select: ")
+        if choice == "1":
+            v = input("Visitor: "); h = input("Home: ")
+            s = input("Spread (opt, Home Line e.g. -5.5): ")
+            t = input("Total (opt): ")
+            run_comparison_test(v, h, float(s) if s else None, float(t) if t else None)
+        elif choice == "2": break

@@ -1,0 +1,394 @@
+Team,Total_Games,Overall_NetEff,Q1_Games,Q1_NetEff,Q1_NetEff_Shrunk,Q1_Confidence,Q2_Games,Q2_NetEff,Q2_NetEff_Shrunk,Q2_Confidence,Q3_Games,Q3_NetEff,Q3_NetEff_Shrunk,Q3_Confidence,Q4_Games,Q4_NetEff,Q4_NetEff_Shrunk,Q4_Confidence
+Kentucky Christian Knights,3,-31.62,0,,,LOW,1,,,LOW,0,,,LOW,2,,,LOW
+Tennessee Tech Golden Eagles,9,-9.11,2,,,LOW,0,,,LOW,3,-2.76,-6.39,MEDIUM,4,-4.98,-7.04,MEDIUM
+Eastern Illinois Panthers,7,-26.5,4,-28.4,-27.45,MEDIUM,0,,,LOW,3,-23.95,-25.41,MEDIUM,0,,,LOW
+Towson Tigers,9,-10.43,2,,,LOW,1,,,LOW,4,1.88,-4.27,MEDIUM,2,,,LOW
+William & Mary Tribe,10,0.04,2,,,LOW,2,,,LOW,3,-6.33,-2.69,MEDIUM,3,15.07,6.48,MEDIUM
+Texas A&M-Corpus Christi Islanders,7,-19.93,3,-35.07,-26.42,MEDIUM,2,,,LOW,2,,,LOW,0,,,LOW
+SMU Mustangs,5,-0.58,5,-0.58,-0.58,HIGH,0,,,LOW,0,,,LOW,0,,,LOW
+Southern Utah Thunderbirds,10,-20.17,2,,,LOW,2,,,LOW,4,-14.17,-17.17,MEDIUM,2,,,LOW
+Utah Tech Trailblazers,9,-5.74,3,-10.64,-7.84,MEDIUM,2,,,LOW,1,,,LOW,3,-0.4,-3.45,MEDIUM
+Campbell Fighting Camels,9,-18.06,4,-27.11,-22.59,MEDIUM,3,-14.05,-16.34,MEDIUM,2,,,LOW,0,,,LOW
+Gonzaga Bulldogs,9,18.58,4,10.03,14.3,MEDIUM,2,,,LOW,2,,,LOW,1,,,LOW
+Syracuse Orange,5,-3.05,3,-10.57,-6.27,MEDIUM,1,,,LOW,0,,,LOW,1,,,LOW
+Kansas Jayhawks,7,1.19,4,-1.3,-0.05,MEDIUM,3,4.5,2.61,MEDIUM,0,,,LOW,0,,,LOW
+Georgia Southern Eagles,9,-4.01,0,,,LOW,2,,,LOW,1,,,LOW,6,6.89,2.53,HIGH
+Coastal Carolina Chanticleers,11,-11.02,0,,,LOW,2,,,LOW,4,-9.45,-10.24,MEDIUM,5,-3.02,-6.57,HIGH
+Omaha Mavericks,9,-4.35,1,,,LOW,3,-6.5,-5.27,MEDIUM,4,-4.92,-4.63,MEDIUM,1,,,LOW
+Texas Tech Red Raiders,7,1.57,6,1.8,1.71,HIGH,1,,,LOW,0,,,LOW,0,,,LOW
+Arkansas Razorbacks,5,9.0,4,8.87,8.94,MEDIUM,0,,,LOW,1,,,LOW,0,,,LOW
+Delaware State Hornets,10,-29.37,2,,,LOW,1,,,LOW,3,-31.6,-30.33,MEDIUM,4,-11.1,-20.24,MEDIUM
+Temple Owls,7,7.28,1,,,LOW,1,,,LOW,3,8.42,7.77,MEDIUM,2,,,LOW
+Long Island University Sharks,11,-1.17,4,-11.01,-6.09,MEDIUM,0,,,LOW,3,-4.85,-2.75,MEDIUM,4,11.42,5.12,MEDIUM
+Wyoming Cowboys,5,-3.74,2,,,LOW,1,,,LOW,1,,,LOW,1,,,LOW
+South Dakota State Jackrabbits,10,-7.14,1,,,LOW,3,-17.11,-11.41,MEDIUM,2,,,LOW,4,3.8,-1.67,MEDIUM
+IU Indianapolis Jaguars,10,-0.68,2,,,LOW,1,,,LOW,3,2.71,0.77,MEDIUM,4,-0.6,-0.64,MEDIUM
+Northern Kentucky Norse,5,1.64,1,,,LOW,0,,,LOW,1,,,LOW,3,8.31,4.5,MEDIUM
+New Hampshire Wildcats,9,-20.26,4,-27.4,-23.83,MEDIUM,1,,,LOW,2,,,LOW,2,,,LOW
+Harvard Crimson,8,-6.21,1,,,LOW,1,,,LOW,5,-10.88,-8.81,HIGH,1,,,LOW
+Oregon State Beavers,7,-5.95,0,,,LOW,3,-7.16,-6.47,MEDIUM,2,,,LOW,2,,,LOW
+Oregon Ducks,7,-4.25,5,-6.43,-5.46,HIGH,1,,,LOW,1,,,LOW,0,,,LOW
+Central Connecticut Blue Devils,7,-10.9,1,,,LOW,0,,,LOW,5,-17.72,-14.69,HIGH,1,,,LOW
+Quinnipiac Bobcats,7,0.59,1,,,LOW,2,,,LOW,2,,,LOW,2,,,LOW
+Fairfield Stags,9,-1.46,1,,,LOW,1,,,LOW,0,,,LOW,7,4.36,2.25,HIGH
+NJIT Highlanders,10,-22.65,3,-36.27,-28.49,MEDIUM,1,,,LOW,3,-12.6,-18.34,MEDIUM,3,-22.8,-22.71,MEDIUM
+Yale Bulldogs,9,21.04,1,,,LOW,1,,,LOW,4,23.44,22.24,MEDIUM,3,12.3,17.29,MEDIUM
+Brown Bears,6,-12.23,1,,,LOW,1,,,LOW,0,,,LOW,4,-8.09,-10.16,MEDIUM
+UIC Flames,9,-1.65,1,,,LOW,2,,,LOW,4,-5.7,-3.68,MEDIUM,2,,,LOW
+McNeese Cowboys,6,-4.62,2,,,LOW,3,-0.1,-2.68,MEDIUM,1,,,LOW,0,,,LOW
+Santa Clara Broncos,9,8.44,2,,,LOW,3,13.6,10.65,MEDIUM,3,22.47,14.45,MEDIUM,1,,,LOW
+Tarleton State Texans,7,-1.37,4,-14.03,-7.7,MEDIUM,0,,,LOW,1,,,LOW,2,,,LOW
+Portland Pilots,6,-16.2,1,,,LOW,4,-13.79,-14.99,MEDIUM,1,,,LOW,0,,,LOW
+Stanford Cardinal,5,12.19,2,,,LOW,2,,,LOW,1,,,LOW,0,,,LOW
+George Mason Patriots,5,13.21,1,,,LOW,0,,,LOW,4,21.08,17.14,MEDIUM,0,,,LOW
+La Salle Explorers,8,-12.2,2,,,LOW,3,7.74,-3.65,MEDIUM,2,,,LOW,1,,,LOW
+Kent State Golden Flashes,4,-7.87,1,,,LOW,0,,,LOW,2,,,LOW,1,,,LOW
+Massachusetts Minutemen,7,2.35,0,,,LOW,0,,,LOW,5,2.69,2.54,HIGH,2,,,LOW
+Colorado State Rams,6,10.05,1,,,LOW,4,14.91,12.48,MEDIUM,0,,,LOW,1,,,LOW
+South Florida Bulls,8,3.09,3,0.72,2.07,MEDIUM,3,-2.5,0.69,MEDIUM,2,,,LOW,0,,,LOW
+Ball State Cardinals,8,-20.47,1,,,LOW,0,,,LOW,3,-20.66,-20.55,MEDIUM,4,-18.25,-19.36,MEDIUM
+Indiana State Sycamores,8,-7.58,1,,,LOW,1,,,LOW,4,4.85,-1.37,MEDIUM,2,,,LOW
+VMI Keydets,7,-12.04,1,,,LOW,1,,,LOW,3,-14.34,-13.03,MEDIUM,2,,,LOW
+Southern Indiana Screaming Eagles,6,-19.86,1,,,LOW,0,,,LOW,2,,,LOW,3,-13.13,-16.98,MEDIUM
+Queens University Royals,9,-3.21,5,-6.76,-5.18,HIGH,0,,,LOW,3,-4.02,-3.56,MEDIUM,1,,,LOW
+Winthrop Eagles,9,1.6,3,-10.8,-3.72,MEDIUM,1,,,LOW,1,,,LOW,4,9.17,5.39,MEDIUM
+Georgia Bulldogs,5,6.91,2,,,LOW,2,,,LOW,1,,,LOW,0,,,LOW
+Florida Gators,8,1.16,6,-3.55,-1.67,HIGH,2,,,LOW,0,,,LOW,0,,,LOW
+New Mexico Highlands Cowboys,3,-40.41,1,,,LOW,1,,,LOW,1,,,LOW,0,,,LOW
+Montana State Bobcats,9,-4.99,2,,,LOW,2,,,LOW,1,,,LOW,4,2.83,-1.08,MEDIUM
+Northwestern Wildcats,6,2.85,3,-1.89,0.82,MEDIUM,3,7.59,4.88,MEDIUM,0,,,LOW,0,,,LOW
+Wisconsin Badgers,5,-13.17,4,-22.3,-17.74,MEDIUM,1,,,LOW,0,,,LOW,0,,,LOW
+Jackson State Tigers,12,-29.75,7,-35.19,-33.21,HIGH,0,,,LOW,2,,,LOW,3,-15.51,-23.65,MEDIUM
+Louisiana Tech Bulldogs,6,-23.72,0,,,LOW,2,,,LOW,4,-21.36,-22.54,MEDIUM,0,,,LOW
+Southern Wesleyan Warriors,3,-21.37,0,,,LOW,0,,,LOW,1,,,LOW,2,,,LOW
+Kennesaw State Owls,7,-9.29,1,,,LOW,2,,,LOW,0,,,LOW,4,-3.49,-6.39,MEDIUM
+Youngstown State Penguins,9,1.11,0,,,LOW,3,6.09,3.24,MEDIUM,3,4.71,2.65,MEDIUM,3,-7.46,-2.56,MEDIUM
+UT Martin Skyhawks,8,0.82,0,,,LOW,3,-14.43,-5.72,MEDIUM,2,,,LOW,3,17.38,7.92,MEDIUM
+St. Thomas-Minnesota Tommies,7,2.71,1,,,LOW,0,,,LOW,4,3.4,3.05,MEDIUM,2,,,LOW
+Southeast Missouri State Redhawks,9,3.91,3,-4.34,0.37,MEDIUM,0,,,LOW,1,,,LOW,5,4.48,4.23,HIGH
+South Carolina Upstate Spartans,7,-10.82,2,,,LOW,0,,,LOW,3,-10.34,-10.61,MEDIUM,2,,,LOW
+Nebraska Cornhuskers,5,19.25,2,,,LOW,3,25.76,22.04,MEDIUM,0,,,LOW,0,,,LOW
+Western Michigan Broncos,8,-10.83,2,,,LOW,1,,,LOW,3,-13.01,-11.76,MEDIUM,2,,,LOW
+Central Arkansas Bears,7,-19.06,4,-22.01,-20.53,MEDIUM,1,,,LOW,0,,,LOW,2,,,LOW
+Auburn Tigers,8,5.71,6,0.18,2.39,HIGH,1,,,LOW,0,,,LOW,1,,,LOW
+Wright State Raiders,8,6.01,1,,,LOW,1,,,LOW,3,1.81,4.21,MEDIUM,3,23.85,13.66,MEDIUM
+Norfolk State Spartans,12,-12.85,2,,,LOW,1,,,LOW,3,-13.48,-13.12,MEDIUM,6,-10.66,-11.54,HIGH
+Morehead State Eagles,9,-14.79,3,-23.99,-18.73,MEDIUM,1,,,LOW,1,,,LOW,4,-3.08,-8.93,MEDIUM
+Murray State Racers,7,12.37,1,,,LOW,3,12.31,12.34,MEDIUM,2,,,LOW,1,,,LOW
+Cal State Fullerton Titans,9,0.29,2,,,LOW,3,-20.06,-8.43,MEDIUM,3,10.11,4.5,MEDIUM,1,,,LOW
+Hawai'i Rainbow Warriors,3,-1.75,0,,,LOW,2,,,LOW,0,,,LOW,1,,,LOW
+Coppin State Eagles,16,-23.88,2,,,LOW,3,-34.97,-28.63,MEDIUM,6,-21.43,-22.41,HIGH,5,-13.54,-18.14,HIGH
+Maryland Terrapins,6,-6.29,4,-15.9,-11.09,MEDIUM,1,,,LOW,0,,,LOW,1,,,LOW
+Vermont Catamounts,10,4.63,0,,,LOW,0,,,LOW,5,5.11,4.9,HIGH,5,4.15,4.36,HIGH
+SIU Edwardsville Cougars,8,-4.42,1,,,LOW,0,,,LOW,1,,,LOW,6,-3.03,-3.59,HIGH
+North Florida Ospreys,11,-11.52,4,-32.27,-21.9,MEDIUM,1,,,LOW,5,2.12,-3.94,HIGH,1,,,LOW
+Loyola Maryland Greyhounds,9,-5.91,1,,,LOW,1,,,LOW,3,-9.95,-7.64,MEDIUM,4,5.5,-0.21,MEDIUM
+American University Eagles,7,-10.84,4,-15.97,-13.41,MEDIUM,0,,,LOW,2,,,LOW,1,,,LOW
+Lipscomb Bisons,9,-11.25,4,-31.04,-21.15,MEDIUM,0,,,LOW,3,9.93,-2.17,MEDIUM,2,,,LOW
+Duke Blue Devils,7,15.06,5,13.31,14.09,HIGH,2,,,LOW,0,,,LOW,0,,,LOW
+Grambling Tigers,10,-6.32,2,,,LOW,0,,,LOW,4,-17.93,-12.12,MEDIUM,4,12.65,3.16,MEDIUM
+Southern Miss Golden Eagles,8,-1.31,3,-16.8,-7.95,MEDIUM,0,,,LOW,2,,,LOW,3,10.1,3.58,MEDIUM
+Western Kentucky Hilltoppers,6,-13.24,1,,,LOW,2,,,LOW,3,-21.88,-16.94,MEDIUM,0,,,LOW
+Virginia-Lynchburg Dragons,9,-45.53,0,,,LOW,0,,,LOW,2,,,LOW,7,-43.83,-44.45,HIGH
+Arizona Wildcats,6,8.81,5,5.2,6.8,HIGH,1,,,LOW,0,,,LOW,0,,,LOW
+Texas State Bobcats,7,-14.72,0,,,LOW,1,,,LOW,4,-10.71,-12.71,MEDIUM,2,,,LOW
+Troy Trojans,8,4.21,2,,,LOW,2,,,LOW,4,1.35,2.78,MEDIUM,0,,,LOW
+Duquesne Dukes,6,-1.17,2,,,LOW,2,,,LOW,1,,,LOW,1,,,LOW
+Cal State Bakersfield Roadrunners,6,-12.75,0,,,LOW,2,,,LOW,4,-1.97,-7.36,MEDIUM,0,,,LOW
+UC Davis Aggies,6,-5.01,0,,,LOW,4,-7.65,-6.33,MEDIUM,2,,,LOW,0,,,LOW
+Seattle U Redhawks,7,0.06,2,,,LOW,1,,,LOW,2,,,LOW,2,,,LOW
+UTSA Roadrunners,9,-17.48,2,,,LOW,2,,,LOW,1,,,LOW,4,-2.32,-9.9,MEDIUM
+California Golden Bears,3,3.26,3,3.26,3.26,MEDIUM,0,,,LOW,0,,,LOW,0,,,LOW
+Cornell Big Red,9,17.85,1,,,LOW,2,,,LOW,3,16.41,17.23,MEDIUM,3,36.4,25.8,MEDIUM
+UAlbany Great Danes,12,-9.87,1,,,LOW,5,-16.38,-13.48,HIGH,3,-7.25,-8.75,MEDIUM,3,-0.62,-5.91,MEDIUM
+New Mexico State Aggies,7,-6.9,0,,,LOW,1,,,LOW,4,-6.4,-6.65,MEDIUM,2,,,LOW
+Florida International Panthers,4,-10.03,3,-9.66,-9.87,MEDIUM,0,,,LOW,1,,,LOW,0,,,LOW
+Vanderbilt Commodores,6,15.77,4,28.91,22.34,MEDIUM,1,,,LOW,1,,,LOW,0,,,LOW
+Arkansas-Pine Bluff Golden Lions,9,-19.42,5,-21.41,-20.52,HIGH,2,,,LOW,2,,,LOW,0,,,LOW
+UC Irvine Anteaters,8,-0.99,0,,,LOW,1,,,LOW,5,-8.43,-5.13,HIGH,2,,,LOW
+Marist Red Foxes,6,-9.91,0,,,LOW,2,,,LOW,2,,,LOW,2,,,LOW
+Xavier Musketeers,6,-6.1,2,,,LOW,4,-3.61,-4.86,MEDIUM,0,,,LOW,0,,,LOW
+Monmouth Hawks,9,-2.82,2,,,LOW,1,,,LOW,2,,,LOW,4,13.88,5.53,MEDIUM
+Gardner-Webb Runnin' Bulldogs,11,-22.01,2,,,LOW,4,-34.57,-28.29,MEDIUM,4,-9.29,-15.65,MEDIUM,1,,,LOW
+High Point Panthers,4,14.25,0,,,LOW,1,,,LOW,1,,,LOW,2,,,LOW
+Merrimack Warriors,10,-12.76,2,,,LOW,1,,,LOW,3,-23.68,-17.44,MEDIUM,4,12.26,-0.25,MEDIUM
+South Dakota Coyotes,8,-3.12,3,-9.86,-6.01,MEDIUM,1,,,LOW,3,-2.0,-2.64,MEDIUM,1,,,LOW
+Stonehill Skyhawks,11,-20.64,2,,,LOW,2,,,LOW,1,,,LOW,6,-11.89,-15.39,HIGH
+DePaul Blue Demons,5,-8.93,3,-14.37,-11.26,MEDIUM,1,,,LOW,1,,,LOW,0,,,LOW
+New Mexico Lobos,6,-4.23,3,-15.31,-8.98,MEDIUM,2,,,LOW,1,,,LOW,0,,,LOW
+North Carolina Central Eagles,9,-21.35,4,-22.45,-21.9,MEDIUM,2,,,LOW,2,,,LOW,1,,,LOW
+Dayton Flyers,6,-7.76,3,-14.53,-10.66,MEDIUM,1,,,LOW,1,,,LOW,1,,,LOW
+Baylor Bears,5,-0.64,4,2.29,0.83,MEDIUM,1,,,LOW,0,,,LOW,0,,,LOW
+Nicholls Colonels,9,-3.94,3,-13.2,-7.91,MEDIUM,2,,,LOW,3,7.98,1.17,MEDIUM,1,,,LOW
+Fairleigh Dickinson Knights,9,-17.31,3,-32.75,-23.93,MEDIUM,1,,,LOW,2,,,LOW,3,9.18,-5.96,MEDIUM
+Boston College Eagles,6,-10.54,0,,,LOW,2,,,LOW,4,-5.05,-7.8,MEDIUM,0,,,LOW
+Cleveland State Vikings,9,-1.55,2,,,LOW,1,,,LOW,3,7.87,2.49,MEDIUM,3,5.71,1.56,MEDIUM
+Drexel Dragons,7,-11.02,0,,,LOW,1,,,LOW,5,-6.23,-8.36,HIGH,1,,,LOW
+Charleston Cougars,8,3.45,0,,,LOW,3,-1.32,1.41,MEDIUM,4,5.5,4.48,MEDIUM,1,,,LOW
+Lafayette Leopards,7,-3.08,2,,,LOW,1,,,LOW,2,,,LOW,2,,,LOW
+Wagner Seahawks,8,-3.98,2,,,LOW,2,,,LOW,1,,,LOW,3,13.88,3.68,MEDIUM
+Fordham Rams,4,-5.39,0,,,LOW,1,,,LOW,2,,,LOW,1,,,LOW
+Rice Owls,7,-12.15,2,,,LOW,2,,,LOW,1,,,LOW,2,,,LOW
+Jacksonville State Gamecocks,5,-10.76,0,,,LOW,2,,,LOW,1,,,LOW,2,,,LOW
+Georgia State Panthers,12,-20.23,1,,,LOW,1,,,LOW,8,-22.59,-21.8,HIGH,2,,,LOW
+East Texas A&M Lions,10,-18.42,4,-30.02,-24.22,MEDIUM,1,,,LOW,2,,,LOW,3,-4.73,-12.55,MEDIUM
+SE Louisiana Lions,6,-13.74,2,,,LOW,1,,,LOW,1,,,LOW,2,,,LOW
+Richmond Spiders,6,10.79,1,,,LOW,1,,,LOW,4,5.68,8.23,MEDIUM,0,,,LOW
+Alcorn State Braves,12,-15.52,4,-25.38,-20.45,MEDIUM,3,-19.92,-17.41,MEDIUM,3,-10.26,-13.26,MEDIUM,2,,,LOW
+Florida State Seminoles,6,-17.74,4,-22.85,-20.29,MEDIUM,1,,,LOW,1,,,LOW,0,,,LOW
+North Carolina A&T Aggies,8,-3.32,1,,,LOW,1,,,LOW,1,,,LOW,5,-3.33,-3.33,HIGH
+Houston Christian Huskies,8,4.54,1,,,LOW,2,,,LOW,3,-0.19,2.51,MEDIUM,2,,,LOW
+UC Santa Barbara Gauchos,8,-5.71,0,,,LOW,2,,,LOW,3,-5.58,-5.65,MEDIUM,3,9.7,0.9,MEDIUM
+Bethune-Cookman Wildcats,11,-13.96,7,-20.99,-18.43,HIGH,1,,,LOW,1,,,LOW,2,,,LOW
+Miami Hurricanes,4,0.07,3,-6.81,-2.88,MEDIUM,0,,,LOW,1,,,LOW,0,,,LOW
+Maryland Eastern Shore Hawks,13,-26.25,6,-42.01,-35.71,HIGH,1,,,LOW,1,,,LOW,5,-8.6,-16.45,HIGH
+Georgetown Hoyas,6,-13.52,2,,,LOW,4,-11.7,-12.61,MEDIUM,0,,,LOW,0,,,LOW
+Green Bay Phoenix,10,3.01,1,,,LOW,2,,,LOW,4,9.37,6.19,MEDIUM,3,11.82,6.79,MEDIUM
+Davidson Wildcats,6,-7.87,2,,,LOW,0,,,LOW,3,-2.75,-5.68,MEDIUM,1,,,LOW
+Mid-Atlantic Christian Mustangs,3,-43.64,0,,,LOW,0,,,LOW,1,,,LOW,2,,,LOW
+Mercyhurst Lakers,9,-19.29,3,-40.51,-28.39,MEDIUM,2,,,LOW,1,,,LOW,3,-5.33,-13.31,MEDIUM
+San Diego State Aztecs,6,-2.82,3,-28.37,-13.77,MEDIUM,2,,,LOW,1,,,LOW,0,,,LOW
+Nevada Wolf Pack,6,5.68,2,,,LOW,1,,,LOW,3,9.06,7.13,MEDIUM,0,,,LOW
+Texas Southern Tigers,8,-21.75,4,-20.06,-20.9,MEDIUM,1,,,LOW,0,,,LOW,3,-16.56,-19.52,MEDIUM
+Minnesota Golden Gophers,6,4.08,3,-1.42,1.72,MEDIUM,2,,,LOW,1,,,LOW,0,,,LOW
+Idaho Vandals,9,-0.88,1,,,LOW,1,,,LOW,4,10.06,4.59,MEDIUM,3,-9.73,-4.67,MEDIUM
+Cal Poly Mustangs,10,-6.94,2,,,LOW,3,0.07,-3.93,MEDIUM,2,,,LOW,3,-15.81,-10.74,MEDIUM
+Louisiana Ragin' Cajuns,8,-30.93,2,,,LOW,1,,,LOW,4,-33.63,-32.28,MEDIUM,1,,,LOW
+New Haven Chargers,10,-19.58,3,-32.6,-25.16,MEDIUM,0,,,LOW,2,,,LOW,5,-9.16,-13.79,HIGH
+East Tennessee State Buccaneers,6,-2.98,1,,,LOW,1,,,LOW,1,,,LOW,3,3.58,-0.17,MEDIUM
+UC Riverside Highlanders,10,-7.85,3,-26.24,-15.73,MEDIUM,1,,,LOW,4,-2.03,-4.94,MEDIUM,2,,,LOW
+Ole Miss Rebels,7,-1.57,4,-15.92,-8.74,MEDIUM,0,,,LOW,2,,,LOW,1,,,LOW
+Eastern Kentucky Colonels,9,-7.37,1,,,LOW,2,,,LOW,4,-2.91,-5.14,MEDIUM,2,,,LOW
+Rutgers Scarlet Knights,5,-22.6,4,-25.71,-24.15,MEDIUM,1,,,LOW,0,,,LOW,0,,,LOW
+Seton Hall Pirates,6,3.86,4,4.2,4.03,MEDIUM,1,,,LOW,1,,,LOW,0,,,LOW
+Alabama A&M Bulldogs,6,-16.96,2,,,LOW,0,,,LOW,1,,,LOW,3,-4.06,-11.43,MEDIUM
+Indiana Hoosiers,5,-0.39,2,,,LOW,2,,,LOW,1,,,LOW,0,,,LOW
+Buffalo Bulls,8,11.1,0,,,LOW,1,,,LOW,0,,,LOW,7,14.07,12.99,HIGH
+Tennessee Volunteers,6,0.86,5,-3.03,-1.3,HIGH,0,,,LOW,1,,,LOW,0,,,LOW
+Fresno State Bulldogs,4,-2.19,1,,,LOW,0,,,LOW,2,,,LOW,1,,,LOW
+Pittsburgh Panthers,4,-5.68,3,-14.11,-9.29,MEDIUM,0,,,LOW,1,,,LOW,0,,,LOW
+Southern Illinois Salukis,10,-5.91,1,,,LOW,6,-8.12,-7.23,HIGH,2,,,LOW,1,,,LOW
+Delaware Blue Hens,7,-7.15,2,,,LOW,1,,,LOW,1,,,LOW,3,-5.07,-6.26,MEDIUM
+North Texas Mean Green,6,-26.41,1,,,LOW,2,,,LOW,2,,,LOW,1,,,LOW
+UConn Huskies,7,8.17,5,8.01,8.08,HIGH,2,,,LOW,0,,,LOW,0,,,LOW
+Providence Friars,7,1.31,4,1.28,1.29,MEDIUM,2,,,LOW,1,,,LOW,0,,,LOW
+Purdue Boilermakers,6,19.85,4,23.41,21.63,MEDIUM,1,,,LOW,1,,,LOW,0,,,LOW
+Florida Atlantic Owls,6,-3.58,1,,,LOW,3,-9.28,-6.02,MEDIUM,2,,,LOW,0,,,LOW
+Tulane Green Wave,5,4.17,1,,,LOW,0,,,LOW,2,,,LOW,2,,,LOW
+Texas A&M Aggies,5,0.09,3,-8.22,-3.47,MEDIUM,1,,,LOW,1,,,LOW,0,,,LOW
+Lindenwood Lions,9,-13.24,3,-35.8,-22.91,MEDIUM,0,,,LOW,1,,,LOW,5,-0.21,-6.0,HIGH
+Illinois State Redbirds,9,7.52,2,,,LOW,1,,,LOW,5,9.38,8.55,HIGH,1,,,LOW
+Oklahoma State Cowboys,4,6.42,2,,,LOW,2,,,LOW,0,,,LOW,0,,,LOW
+Liberty Flames,7,3.87,1,,,LOW,1,,,LOW,4,10.1,6.98,MEDIUM,1,,,LOW
+NC State Wolfpack,5,12.45,2,,,LOW,2,,,LOW,1,,,LOW,0,,,LOW
+Chattanooga Mocs,6,-2.42,2,,,LOW,0,,,LOW,0,,,LOW,4,-1.91,-2.17,MEDIUM
+San Francisco Dons,8,-3.99,1,,,LOW,6,-2.86,-3.31,HIGH,1,,,LOW,0,,,LOW
+Colorado Buffaloes,5,12.14,1,,,LOW,3,11.43,11.83,MEDIUM,1,,,LOW,0,,,LOW
+Colgate Raiders,9,0.76,3,-10.63,-4.12,MEDIUM,1,,,LOW,2,,,LOW,3,7.59,3.69,MEDIUM
+San José State Spartans,7,-5.77,3,-7.4,-6.47,MEDIUM,2,,,LOW,1,,,LOW,1,,,LOW
+Utah State Aggies,8,15.1,1,,,LOW,2,,,LOW,4,20.91,18.0,MEDIUM,1,,,LOW
+South Carolina State Bulldogs,11,-19.9,4,-30.5,-25.2,MEDIUM,0,,,LOW,5,-14.06,-16.65,HIGH,2,,,LOW
+North Carolina Tar Heels,5,3.59,4,-0.06,1.77,MEDIUM,0,,,LOW,1,,,LOW,0,,,LOW
+San Diego Toreros,7,-14.21,2,,,LOW,2,,,LOW,2,,,LOW,1,,,LOW
+Long Beach State Beach,7,-19.85,2,,,LOW,1,,,LOW,4,-10.53,-15.19,MEDIUM,0,,,LOW
+UNLV Rebels,6,-4.19,1,,,LOW,3,4.15,-0.61,MEDIUM,2,,,LOW,0,,,LOW
+UCF Knights,3,4.44,2,,,LOW,1,,,LOW,0,,,LOW,0,,,LOW
+Iowa State Cyclones,6,14.71,4,7.48,11.1,MEDIUM,2,,,LOW,0,,,LOW,0,,,LOW
+St. John's Red Storm,6,11.55,5,7.18,9.12,HIGH,1,,,LOW,0,,,LOW,0,,,LOW
+Denver Pioneers,9,0.35,3,-7.19,-2.88,MEDIUM,3,-4.51,-1.73,MEDIUM,3,12.75,5.66,MEDIUM,0,,,LOW
+UT Rio Grande Valley Vaqueros,7,0.26,3,-2.65,-0.99,MEDIUM,1,,,LOW,2,,,LOW,1,,,LOW
+Charlotte 49ers,6,-0.43,1,,,LOW,1,,,LOW,3,-5.89,-2.77,MEDIUM,1,,,LOW
+UMass Lowell River Hawks,11,-5.93,3,-25.94,-14.5,MEDIUM,2,,,LOW,2,,,LOW,4,9.97,2.02,MEDIUM
+Saint Joseph's Hawks,5,-13.7,3,-16.02,-14.7,MEDIUM,0,,,LOW,1,,,LOW,1,,,LOW
+VCU Rams,6,5.74,3,-6.78,0.37,MEDIUM,2,,,LOW,1,,,LOW,0,,,LOW
+Boise State Broncos,6,-5.31,5,-8.45,-7.05,HIGH,1,,,LOW,0,,,LOW,0,,,LOW
+Butler Bulldogs,6,-1.52,4,-1.95,-1.73,MEDIUM,2,,,LOW,0,,,LOW,0,,,LOW
+George Washington Revolutionaries,7,19.79,1,,,LOW,5,21.92,20.97,HIGH,1,,,LOW,0,,,LOW
+Middle Tennessee Blue Raiders,6,-3.4,2,,,LOW,3,6.91,1.02,MEDIUM,0,,,LOW,1,,,LOW
+Princeton Tigers,10,-11.16,2,,,LOW,0,,,LOW,5,-11.17,-11.16,HIGH,3,-0.17,-6.45,MEDIUM
+Akron Zips,7,19.14,1,,,LOW,3,14.98,17.36,MEDIUM,1,,,LOW,2,,,LOW
+Utah Utes,5,-8.17,1,,,LOW,4,-6.21,-7.19,MEDIUM,0,,,LOW,0,,,LOW
+UL Monroe Warhawks,6,5.18,2,,,LOW,1,,,LOW,0,,,LOW,3,7.49,6.17,MEDIUM
+Ohio State Buckeyes,5,5.41,2,,,LOW,2,,,LOW,1,,,LOW,0,,,LOW
+LSU Tigers,6,6.6,3,-0.76,3.45,MEDIUM,0,,,LOW,3,13.96,9.76,MEDIUM,0,,,LOW
+Drake Bulldogs,7,-1.48,1,,,LOW,2,,,LOW,2,,,LOW,2,,,LOW
+Georgia Tech Yellow Jackets,4,-1.4,2,,,LOW,0,,,LOW,2,,,LOW,0,,,LOW
+Hofstra Pride,10,6.9,1,,,LOW,2,,,LOW,3,3.4,5.4,MEDIUM,4,4.97,5.94,MEDIUM
+East Carolina Pirates,5,-27.82,2,,,LOW,1,,,LOW,2,,,LOW,0,,,LOW
+Missouri Tigers,5,-4.55,4,-12.17,-8.36,MEDIUM,0,,,LOW,0,,,LOW,1,,,LOW
+Notre Dame Fighting Irish,7,-6.97,4,-5.66,-6.32,MEDIUM,2,,,LOW,1,,,LOW,0,,,LOW
+Cleary University Cougars,3,-46.87,0,,,LOW,0,,,LOW,2,,,LOW,1,,,LOW
+Kansas State Wildcats,5,-1.31,4,-7.42,-4.37,MEDIUM,1,,,LOW,0,,,LOW,0,,,LOW
+Arizona State Sun Devils,8,12.12,3,-7.73,3.61,MEDIUM,4,18.46,15.29,MEDIUM,1,,,LOW,0,,,LOW
+UT Arlington Mavericks,7,-4.74,1,,,LOW,2,,,LOW,1,,,LOW,3,20.0,5.86,MEDIUM
+Arkansas State Red Wolves,9,0.21,2,,,LOW,1,,,LOW,3,9.92,4.37,MEDIUM,3,14.97,6.54,MEDIUM
+Samford Bulldogs,10,0.66,2,,,LOW,1,,,LOW,3,5.26,2.63,MEDIUM,4,20.21,10.44,MEDIUM
+Villanova Wildcats,6,-2.35,5,-5.26,-3.97,HIGH,0,,,LOW,1,,,LOW,0,,,LOW
+Jacksonville Dolphins,12,-13.04,2,,,LOW,3,-21.13,-16.51,MEDIUM,4,-17.41,-15.23,MEDIUM,3,-0.87,-7.82,MEDIUM
+Michigan State Spartans,6,2.19,3,-5.65,-1.17,MEDIUM,1,,,LOW,1,,,LOW,1,,,LOW
+Oklahoma Sooners,7,0.84,4,-1.45,-0.3,MEDIUM,2,,,LOW,1,,,LOW,0,,,LOW
+Mississippi State Bulldogs,7,3.2,2,,,LOW,3,1.45,2.45,MEDIUM,2,,,LOW,0,,,LOW
+Central Michigan Chippewas,10,-11.41,3,-13.52,-12.31,MEDIUM,2,,,LOW,0,,,LOW,5,-4.26,-7.44,HIGH
+Northern Illinois Huskies,7,-11.7,1,,,LOW,2,,,LOW,3,-4.86,-8.77,MEDIUM,1,,,LOW
+Eastern Michigan Eagles,8,-7.67,4,-19.98,-13.83,MEDIUM,1,,,LOW,0,,,LOW,3,12.46,0.96,MEDIUM
+Southern Jaguars,10,-10.07,5,-12.25,-11.28,HIGH,1,,,LOW,2,,,LOW,2,,,LOW
+California Baptist Lancers,10,-6.55,1,,,LOW,4,-9.46,-8.01,MEDIUM,3,-7.54,-6.97,MEDIUM,2,,,LOW
+Binghamton Bearcats,8,-18.41,1,,,LOW,2,,,LOW,1,,,LOW,4,-13.46,-15.93,MEDIUM
+Canisius Golden Griffins,8,-26.9,0,,,LOW,4,-31.35,-29.12,MEDIUM,2,,,LOW,2,,,LOW
+North Dakota Fighting Hawks,8,-20.26,3,-23.0,-21.43,MEDIUM,1,,,LOW,1,,,LOW,3,-10.8,-16.21,MEDIUM
+BYU Cougars,6,1.44,5,0.22,0.76,HIGH,1,,,LOW,0,,,LOW,0,,,LOW
+Toledo Rockets,7,-1.52,1,,,LOW,2,,,LOW,2,,,LOW,2,,,LOW
+Northern Arizona Lumberjacks,6,-21.94,1,,,LOW,1,,,LOW,4,-9.25,-15.6,MEDIUM,0,,,LOW
+Presbyterian Blue Hose,10,-13.3,2,,,LOW,1,,,LOW,2,,,LOW,5,-5.94,-9.21,HIGH
+Florida Gulf Coast Eagles,6,-2.35,2,,,LOW,0,,,LOW,3,7.92,2.05,MEDIUM,1,,,LOW
+North Dakota State Bison,10,2.79,0,,,LOW,1,,,LOW,5,3.44,3.15,HIGH,4,3.71,3.25,MEDIUM
+Creighton Bluejays,8,-5.53,6,-13.93,-10.57,HIGH,2,,,LOW,0,,,LOW,0,,,LOW
+Sacred Heart Pioneers,11,-8.16,1,,,LOW,1,,,LOW,3,-20.78,-13.57,MEDIUM,6,6.15,0.43,HIGH
+UMBC Retrievers,7,2.32,1,,,LOW,3,-2.04,0.45,MEDIUM,0,,,LOW,3,20.25,10.0,MEDIUM
+Alabama State Hornets,13,-6.4,4,-7.76,-7.08,MEDIUM,4,-17.21,-11.8,MEDIUM,0,,,LOW,5,3.32,-1.0,HIGH
+Navy Midshipmen,7,-1.94,1,,,LOW,1,,,LOW,0,,,LOW,5,3.87,1.29,HIGH
+Bucknell Bison,11,-22.52,3,-40.84,-30.37,MEDIUM,1,,,LOW,3,-9.54,-16.96,MEDIUM,4,-13.33,-17.92,MEDIUM
+Rider Broncs,8,-27.01,4,-29.85,-28.43,MEDIUM,0,,,LOW,2,,,LOW,2,,,LOW
+Mercer Bears,6,-6.2,2,,,LOW,0,,,LOW,4,-2.53,-4.36,MEDIUM,0,,,LOW
+Furman Paladins,6,5.79,0,,,LOW,2,,,LOW,2,,,LOW,2,,,LOW
+Mount St. Mary's Mountaineers,10,-18.53,3,-30.44,-23.64,MEDIUM,1,,,LOW,2,,,LOW,4,-12.52,-15.52,MEDIUM
+Stetson Hatters,10,-19.66,3,-31.49,-24.73,MEDIUM,2,,,LOW,2,,,LOW,3,-9.59,-15.34,MEDIUM
+South Carolina Gamecocks,4,2.33,2,,,LOW,2,,,LOW,0,,,LOW,0,,,LOW
+Evansville Purple Aces,8,-20.07,2,,,LOW,3,-29.09,-23.93,MEDIUM,2,,,LOW,1,,,LOW
+Wofford Terriers,8,5.2,1,,,LOW,2,,,LOW,1,,,LOW,4,25.29,15.25,MEDIUM
+Western Carolina Catamounts,9,-14.37,4,-19.72,-17.04,MEDIUM,1,,,LOW,3,-8.0,-11.64,MEDIUM,1,,,LOW
+Siena Saints,10,-6.47,1,,,LOW,1,,,LOW,3,-14.9,-10.08,MEDIUM,5,2.21,-1.65,HIGH
+Iona Gaels,10,-6.09,1,,,LOW,1,,,LOW,2,,,LOW,6,3.32,-0.44,HIGH
+Houston Cougars,7,4.1,4,7.68,5.89,MEDIUM,2,,,LOW,1,,,LOW,0,,,LOW
+Memphis Tigers,5,-7.8,3,-12.5,-9.82,MEDIUM,1,,,LOW,0,,,LOW,1,,,LOW
+Charleston Southern Buccaneers,10,-3.53,2,,,LOW,1,,,LOW,2,,,LOW,5,6.17,1.86,HIGH
+Belmont Bruins,7,15.74,0,,,LOW,2,,,LOW,3,18.84,17.07,MEDIUM,2,,,LOW
+Oral Roberts Golden Eagles,8,-12.54,3,-21.98,-16.58,MEDIUM,0,,,LOW,3,-0.5,-7.38,MEDIUM,2,,,LOW
+Kentucky Wildcats,5,-10.89,5,-10.89,-10.89,HIGH,0,,,LOW,0,,,LOW,0,,,LOW
+Maine Black Bears,12,-11.96,1,,,LOW,1,,,LOW,4,-8.41,-10.19,MEDIUM,6,-6.14,-8.47,HIGH
+Pepperdine Waves,7,-15.65,2,,,LOW,1,,,LOW,2,,,LOW,2,,,LOW
+Pacific Tigers,9,-2.34,1,,,LOW,3,-9.71,-5.5,MEDIUM,2,,,LOW,3,23.53,8.75,MEDIUM
+Sam Houston Bearkats,9,2.89,2,,,LOW,2,,,LOW,3,2.78,2.84,MEDIUM,2,,,LOW
+Kansas City Roos,8,-19.35,4,-26.49,-22.92,MEDIUM,1,,,LOW,1,,,LOW,2,,,LOW
+Marshall Thundering Herd,6,-3.75,1,,,LOW,0,,,LOW,5,-3.27,-3.48,HIGH,0,,,LOW
+Penn State Nittany Lions,5,-0.98,1,,,LOW,2,,,LOW,0,,,LOW,2,,,LOW
+Washington State Cougars,8,-11.1,2,,,LOW,4,-11.61,-11.36,MEDIUM,1,,,LOW,1,,,LOW
+Northeastern Huskies,10,2.81,2,,,LOW,1,,,LOW,5,10.92,7.32,HIGH,2,,,LOW
+St. Bonaventure Bonnies,7,-3.43,2,,,LOW,1,,,LOW,3,-6.02,-4.54,MEDIUM,1,,,LOW
+Ohio Bobcats,6,-6.4,2,,,LOW,1,,,LOW,2,,,LOW,1,,,LOW
+Montana Grizzlies,5,-4.13,2,,,LOW,1,,,LOW,1,,,LOW,1,,,LOW
+App State Mountaineers,10,-0.69,1,,,LOW,1,,,LOW,3,10.36,4.04,MEDIUM,5,-5.92,-3.6,HIGH
+New Orleans Privateers,11,-11.45,5,-25.13,-19.05,HIGH,1,,,LOW,3,8.16,-3.04,MEDIUM,2,,,LOW
+Northwestern State Demons,9,-7.31,2,,,LOW,4,-7.55,-7.43,MEDIUM,1,,,LOW,2,,,LOW
+Bellarmine Knights,8,7.76,4,-1.62,3.07,MEDIUM,1,,,LOW,1,,,LOW,2,,,LOW
+Clemson Tigers,8,0.49,4,-1.23,-0.37,MEDIUM,4,2.21,1.35,MEDIUM,0,,,LOW,0,,,LOW
+Manhattan Jaspers,9,-8.22,2,,,LOW,1,,,LOW,2,,,LOW,4,6.39,-0.92,MEDIUM
+Illinois Fighting Illini,6,9.14,4,4.4,6.77,MEDIUM,2,,,LOW,0,,,LOW,0,,,LOW
+Missouri State Bears,5,-12.61,1,,,LOW,1,,,LOW,2,,,LOW,1,,,LOW
+Utah Valley Wolverines,9,3.13,2,,,LOW,1,,,LOW,5,2.68,2.88,HIGH,1,,,LOW
+Little Rock Trojans,11,-14.85,1,,,LOW,3,-18.99,-16.62,MEDIUM,2,,,LOW,5,-6.63,-10.28,HIGH
+Loyola Chicago Ramblers,6,-3.8,0,,,LOW,4,4.61,0.4,MEDIUM,1,,,LOW,1,,,LOW
+Purdue Fort Wayne Mastodons,9,-9.39,3,-15.2,-11.88,MEDIUM,3,1.82,-4.59,MEDIUM,2,,,LOW,1,,,LOW
+USC Trojans,8,8.79,3,-18.95,-3.1,MEDIUM,4,23.07,15.93,MEDIUM,1,,,LOW,0,,,LOW
+Nobel Knights,6,-39.49,0,,,LOW,0,,,LOW,3,-50.48,-44.2,MEDIUM,3,-28.51,-34.78,MEDIUM
+Prairie View A&M Panthers,10,-7.32,4,-7.68,-7.5,MEDIUM,2,,,LOW,0,,,LOW,4,1.61,-2.86,MEDIUM
+Valparaiso Beacons,5,-10.75,2,,,LOW,2,,,LOW,0,,,LOW,1,,,LOW
+Holy Cross Crusaders,9,-13.48,2,,,LOW,1,,,LOW,2,,,LOW,4,-13.25,-13.36,MEDIUM
+Cincinnati Bearcats,5,-15.07,4,-17.97,-16.52,MEDIUM,1,,,LOW,0,,,LOW,0,,,LOW
+UAB Blazers,6,-2.55,1,,,LOW,2,,,LOW,2,,,LOW,1,,,LOW
+North Alabama Lions,6,-13.38,2,,,LOW,1,,,LOW,1,,,LOW,2,,,LOW
+Old Dominion Monarchs,10,-11.3,2,,,LOW,6,-18.27,-15.48,HIGH,0,,,LOW,2,,,LOW
+Milwaukee Panthers,8,-7.24,4,-16.08,-11.66,MEDIUM,1,,,LOW,1,,,LOW,2,,,LOW
+Mississippi Valley State Delta Devils,11,-26.82,4,-23.31,-25.06,MEDIUM,4,-46.5,-36.66,MEDIUM,0,,,LOW,3,-5.26,-17.58,MEDIUM
+Boston University Terriers,10,2.46,1,,,LOW,2,,,LOW,4,-2.29,0.08,MEDIUM,3,18.18,9.2,MEDIUM
+Grand Canyon Lopes,6,-7.81,3,-24.01,-14.75,MEDIUM,2,,,LOW,1,,,LOW,0,,,LOW
+Abilene Christian Wildcats,9,-13.47,2,,,LOW,1,,,LOW,2,,,LOW,4,-12.12,-12.79,MEDIUM
+Stephen F. Austin Lumberjacks,8,-2.37,1,,,LOW,0,,,LOW,2,,,LOW,5,1.5,-0.22,HIGH
+Detroit Mercy Titans,8,-6.56,2,,,LOW,1,,,LOW,2,,,LOW,3,0.59,-3.49,MEDIUM
+Niagara Purple Eagles,9,-21.52,2,,,LOW,0,,,LOW,2,,,LOW,5,-14.01,-17.35,HIGH
+Alabama Crimson Tide,7,10.64,5,5.52,7.8,HIGH,0,,,LOW,2,,,LOW,0,,,LOW
+Saint Francis Red Flash,10,-23.13,3,-26.91,-24.75,MEDIUM,2,,,LOW,3,-23.64,-23.35,MEDIUM,2,,,LOW
+Virginia Tech Hokies,6,0.89,4,-3.33,-1.22,MEDIUM,2,,,LOW,0,,,LOW,0,,,LOW
+Howard Bison,7,-11.52,2,,,LOW,0,,,LOW,0,,,LOW,5,-6.1,-8.51,HIGH
+Sacramento State Hornets,7,-20.9,2,,,LOW,2,,,LOW,3,-10.13,-16.29,MEDIUM,0,,,LOW
+UCLA Bruins,6,0.11,5,1.19,0.71,HIGH,1,,,LOW,0,,,LOW,0,,,LOW
+Tennessee State Tigers,9,-8.17,2,,,LOW,0,,,LOW,1,,,LOW,6,-2.0,-4.47,HIGH
+Virginia Cavaliers,6,10.56,3,10.87,10.69,MEDIUM,3,10.25,10.43,MEDIUM,0,,,LOW,0,,,LOW
+Austin Peay Governors,5,-4.8,1,,,LOW,1,,,LOW,1,,,LOW,2,,,LOW
+Weber State Wildcats,7,-6.99,1,,,LOW,3,-6.92,-6.96,MEDIUM,1,,,LOW,2,,,LOW
+Michigan Wolverines,7,16.28,4,18.09,17.18,MEDIUM,3,13.88,15.25,MEDIUM,0,,,LOW,0,,,LOW
+Columbia Lions,8,7.66,1,,,LOW,1,,,LOW,1,,,LOW,5,16.3,12.46,HIGH
+Louisville Cardinals,6,-0.49,3,-3.5,-1.78,MEDIUM,3,2.52,0.8,MEDIUM,0,,,LOW,0,,,LOW
+Wake Forest Demon Deacons,5,-7.5,3,-14.38,-10.45,MEDIUM,2,,,LOW,0,,,LOW,0,,,LOW
+South Alabama Jaguars,10,4.1,0,,,LOW,1,,,LOW,4,4.7,4.4,MEDIUM,5,0.28,1.98,HIGH
+Idaho State Bengals,9,-1.44,2,,,LOW,2,,,LOW,3,7.07,2.21,MEDIUM,2,,,LOW
+Texas Longhorns,5,3.24,4,0.19,1.71,MEDIUM,1,,,LOW,0,,,LOW,0,,,LOW
+UNC Wilmington Seahawks,5,6.99,0,,,LOW,0,,,LOW,4,6.57,6.78,MEDIUM,1,,,LOW
+Dartmouth Big Green,8,4.15,1,,,LOW,2,,,LOW,1,,,LOW,4,5.69,4.92,MEDIUM
+Longwood Lancers,10,-9.69,1,,,LOW,3,-14.2,-11.62,MEDIUM,2,,,LOW,4,2.38,-3.66,MEDIUM
+Morgan State Bears,7,-29.2,0,,,LOW,4,-31.52,-30.36,MEDIUM,0,,,LOW,3,-26.1,-27.87,MEDIUM
+Hampton Pirates,11,-9.72,1,,,LOW,0,,,LOW,3,-15.9,-12.37,MEDIUM,7,-3.37,-5.68,HIGH
+Robert Morris Colonials,8,-3.38,1,,,LOW,2,,,LOW,3,-8.5,-5.57,MEDIUM,2,,,LOW
+Northern Iowa Panthers,5,-6.89,1,,,LOW,2,,,LOW,0,,,LOW,2,,,LOW
+Champion Christian Tigers,5,-40.73,1,,,LOW,0,,,LOW,1,,,LOW,3,-42.05,-41.3,MEDIUM
+Bradley Braves,8,0.33,1,,,LOW,2,,,LOW,4,1.82,1.07,MEDIUM,1,,,LOW
+Saint Mary's Gaels,6,-2.98,1,,,LOW,4,-4.03,-3.51,MEDIUM,0,,,LOW,1,,,LOW
+Western Illinois Leathernecks,8,-16.62,1,,,LOW,0,,,LOW,5,-11.17,-13.59,HIGH,2,,,LOW
+Stony Brook Seawolves,8,-18.92,0,,,LOW,2,,,LOW,3,-23.06,-20.69,MEDIUM,3,-25.21,-21.62,MEDIUM
+Bryan (TN) Lions,4,-49.25,0,,,LOW,0,,,LOW,3,-55.97,-52.13,MEDIUM,1,,,LOW
+UTEP Miners,8,-19.08,1,,,LOW,2,,,LOW,5,-19.77,-19.47,HIGH,0,,,LOW
+TCU Horned Frogs,4,1.79,3,6.88,3.97,MEDIUM,1,,,LOW,0,,,LOW,0,,,LOW
+Florida A&M Rattlers,7,-19.21,2,,,LOW,2,,,LOW,1,,,LOW,2,,,LOW
+Tulsa Golden Hurricane,7,16.55,1,,,LOW,1,,,LOW,3,23.0,19.31,MEDIUM,2,,,LOW
+Air Force Falcons,4,-15.72,2,,,LOW,0,,,LOW,1,,,LOW,1,,,LOW
+Saint Louis Billikens,3,-9.06,1,,,LOW,2,,,LOW,0,,,LOW,0,,,LOW
+Army Black Knights,7,-4.62,0,,,LOW,0,,,LOW,3,-10.5,-7.14,MEDIUM,4,-0.22,-2.42,MEDIUM
+Eastern Washington Eagles,10,-2.64,2,,,LOW,4,-1.95,-2.3,MEDIUM,3,-17.54,-9.03,MEDIUM,1,,,LOW
+Incarnate Word Cardinals,7,1.06,2,,,LOW,2,,,LOW,2,,,LOW,1,,,LOW
+Radford Highlanders,6,-15.43,3,-23.42,-18.86,MEDIUM,1,,,LOW,0,,,LOW,2,,,LOW
+Loyola Marymount Lions,6,-10.54,1,,,LOW,0,,,LOW,4,-5.18,-7.86,MEDIUM,1,,,LOW
+Dallas Christian Crusaders,3,-60.98,0,,,LOW,0,,,LOW,2,,,LOW,1,,,LOW
+Lehigh Mountain Hawks,9,-15.67,2,,,LOW,0,,,LOW,4,-12.08,-13.88,MEDIUM,3,-7.67,-12.24,MEDIUM
+Le Moyne Dolphins,11,-3.37,1,,,LOW,3,-9.28,-5.9,MEDIUM,2,,,LOW,5,11.28,4.77,HIGH
+UC San Diego Tritons,8,16.83,0,,,LOW,1,,,LOW,5,27.31,22.65,HIGH,2,,,LOW
+Pennsylvania Quakers,7,0.28,2,,,LOW,1,,,LOW,2,,,LOW,2,,,LOW
+Miami (OH) RedHawks,5,15.18,0,,,LOW,1,,,LOW,0,,,LOW,4,13.16,14.17,MEDIUM
+Central Penn Knights,3,-36.1,0,,,LOW,0,,,LOW,1,,,LOW,2,,,LOW
+Vermont State - Johnson Badgers,3,-30.51,0,,,LOW,0,,,LOW,0,,,LOW,3,-30.51,-30.51,MEDIUM
+Rhode Island Rams,7,3.29,1,,,LOW,3,-4.64,-0.11,MEDIUM,2,,,LOW,1,,,LOW
+The Citadel Bulldogs,8,-15.9,1,,,LOW,2,,,LOW,3,-17.59,-16.62,MEDIUM,2,,,LOW
+West Georgia Wolves,7,-15.43,3,-27.78,-20.72,MEDIUM,1,,,LOW,1,,,LOW,2,,,LOW
+Bryant Bulldogs,10,-35.07,2,,,LOW,2,,,LOW,4,-26.52,-30.8,MEDIUM,2,,,LOW
+Carolina University Bruins,3,-46.08,0,,,LOW,1,,,LOW,1,,,LOW,1,,,LOW
+Fisk Bulldogs,4,-48.28,1,,,LOW,0,,,LOW,2,,,LOW,1,,,LOW
+Bethesda University Flames,6,-45.12,0,,,LOW,2,,,LOW,3,-35.75,-41.11,MEDIUM,1,,,LOW
+West Virginia Mountaineers,5,-7.8,3,-5.92,-6.99,MEDIUM,1,,,LOW,1,,,LOW,0,,,LOW
+Saint Peter's Peacocks,5,-20.41,2,,,LOW,1,,,LOW,0,,,LOW,2,,,LOW
+Cal State Northridge Matadors,7,-0.81,0,,,LOW,2,,,LOW,2,,,LOW,3,8.86,3.33,MEDIUM
+James Madison Dukes,8,-1.03,2,,,LOW,2,,,LOW,2,,,LOW,2,,,LOW
+Wichita State Shockers,6,-0.84,2,,,LOW,2,,,LOW,2,,,LOW,0,,,LOW
+Coastal Georgia Mariner,3,-32.17,0,,,LOW,1,,,LOW,1,,,LOW,1,,,LOW
+Midway University Eagles,3,-10.97,0,,,LOW,1,,,LOW,0,,,LOW,2,,,LOW
+College Of Biblical Studies Ambassadors,7,-66.13,1,,,LOW,1,,,LOW,1,,,LOW,4,-75.46,-70.79,MEDIUM
+UNC Greensboro Spartans,9,0.28,2,,,LOW,1,,,LOW,3,16.46,7.22,MEDIUM,3,3.88,1.82,MEDIUM
+UNC Asheville Bulldogs,8,-3.99,1,,,LOW,2,,,LOW,2,,,LOW,3,12.52,3.09,MEDIUM
+Iowa Hawkeyes,4,-12.68,2,,,LOW,2,,,LOW,0,,,LOW,0,,,LOW
+Dakota State Trojans,3,-12.43,0,,,LOW,0,,,LOW,1,,,LOW,2,,,LOW
+Lamar Cardinals,8,-11.9,3,-9.54,-10.89,MEDIUM,0,,,LOW,2,,,LOW,3,-9.43,-10.84,MEDIUM
+Ecclesia Royals,5,-40.21,0,,,LOW,0,,,LOW,1,,,LOW,4,-34.28,-37.24,MEDIUM
+Notre Dame (MD) Gators,3,-32.91,0,,,LOW,0,,,LOW,2,,,LOW,1,,,LOW
+Bowling Green Falcons,7,11.21,1,,,LOW,1,,,LOW,3,14.26,12.52,MEDIUM,2,,,LOW
+Oakland Golden Grizzlies,9,5.08,4,-15.11,-5.01,MEDIUM,0,,,LOW,4,22.22,13.65,MEDIUM,1,,,LOW
+Chicago State Cougars,12,-19.62,4,-19.38,-19.5,MEDIUM,4,-31.97,-25.79,MEDIUM,1,,,LOW,3,-2.85,-12.43,MEDIUM
+Marquette Golden Eagles,6,-15.3,5,-19.84,-17.82,HIGH,1,,,LOW,0,,,LOW,0,,,LOW
+East-West University Phantoms,3,-43.97,0,,,LOW,0,,,LOW,0,,,LOW,3,-43.97,-43.97,MEDIUM
+Northern Colorado Bears,8,7.5,1,,,LOW,1,,,LOW,3,-6.64,1.44,MEDIUM,3,11.78,9.33,MEDIUM
+Elon Phoenix,6,12.66,2,,,LOW,0,,,LOW,3,17.93,14.92,MEDIUM,1,,,LOW
+Washington Huskies,8,-1.65,4,-0.4,-1.02,MEDIUM,3,-11.65,-5.93,MEDIUM,1,,,LOW,0,,,LOW
+Lincoln University (CA) Oaklanders,3,-23.56,0,,,LOW,1,,,LOW,0,,,LOW,2,,,LOW
+Oakwood Ambassadors,3,-33.02,0,,,LOW,0,,,LOW,2,,,LOW,1,,,LOW
+Portland State Vikings,6,-10.24,0,,,LOW,3,-8.56,-9.52,MEDIUM,2,,,LOW,1,,,LOW
+Bob Jones Bruins,3,-43.97,0,,,LOW,0,,,LOW,2,,,LOW,1,,,LOW
+Toccoa Falls Eagles,4,-32.03,0,,,LOW,0,,,LOW,2,,,LOW,2,,,LOW
+Arlington Baptist Patriots,3,-44.69,1,,,LOW,0,,,LOW,1,,,LOW,1,,,LOW
+Trinity College of Jacksonville Eagles,3,-40.18,0,,,LOW,0,,,LOW,1,,,LOW,2,,,LOW
