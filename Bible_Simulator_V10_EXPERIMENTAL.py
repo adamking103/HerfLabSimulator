@@ -2,6 +2,7 @@ import requests
 import pandas as pd
 import numpy as np
 import os
+import sys
 from io import StringIO
 from datetime import datetime, timedelta
 from scipy import stats
@@ -14,31 +15,27 @@ warnings.filterwarnings('ignore')
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # ==============================================================================
-#   THE BIBLE V10.0 - EXPERIMENTAL HYBRID EDITION (INTEGRATED & FIXED)
+#   THE BIBLE V10.0 - PRODUCTION AUTOMATION EDITION
 #   
-#   Updates:
-#   1. Fixed Signal Notation (Visitor bets now show inverted spread, e.g. +9.5)
-#   2. Fixed "Betting Line" display (Favorites -, Underdogs +)
-#   3. PhD-Level Home/Road Splits
-#   4. Bayesian Opponent Quality Adjustments
+#   Features:
+#   1. "Daily Slate" Automator (Uses KenPom FanMatch with Date)
+#   2. Automatic CSV Report Generation
+#   3. Full Integration of PhD-Level Location & Bayesian Adjustments
 # ==============================================================================
 
 # --- CONFIGURATION ---
 KP_API_KEY = "18ee6ae93a94ade96fc899611578ef42f57ad96e09845cb585ee3b2aab1444fa"
-BASE_HCA_POINTS = 2.6  # Fallback only
+BASE_HCA_POINTS = 2.6
 STYLE_DB_PATH = os.path.join(BASE_DIR, "cbb_style_2025_complete.csv")
 QUADRANT_DATA_PATH = os.path.join(BASE_DIR, "team_quadrant_analysis_2026.csv")
 ADJUSTED_EFF_PATH = os.path.join(BASE_DIR, "team_adjusted_efficiency_profiles_2026.csv")
 
-# --- PhD-LEVEL LOCATION DATA CONFIG ---
+# --- PhD-LEVEL LOCATION DATA ---
 HOME_PERF_FILE = "team_home_performance_VALIDATED_2026.csv"
 ROAD_PERF_FILE = "team_road_performance_VALIDATED_2026.csv"
 LOCATION_SCALING = 0.35
 
-# Location Confidence Weights
-CONFIDENCE_WEIGHTS = {
-    'HIGH': 1.0, 'MEDIUM': 0.7, 'LOW': 0.3, 'INSUFFICIENT': 0.0
-}
+CONFIDENCE_WEIGHTS = {'HIGH': 1.0, 'MEDIUM': 0.7, 'LOW': 0.3, 'INSUFFICIENT': 0.0}
 
 # ==============================================================================
 # MASTER TRANSLATION DICTIONARY (COMPLETE)
@@ -126,6 +123,7 @@ KENPOM_TRANSLATION = {
 }
 
 def standardize_name(name):
+    if not isinstance(name, str): return str(name)
     name = name.strip()
     return KENPOM_TRANSLATION.get(name, name)
 
@@ -154,16 +152,47 @@ HIGH_CONFIDENCE_SPREAD = 4.0
 # SECTION 1: DATA LOADING
 # ======================================================
 
-def get_kenpom_data(endpoint, year=2026):
-    url = f"https://kenpom.com/api.php?endpoint={endpoint}&y={year}"
-    headers = {"Authorization": f"Bearer {KP_API_KEY}", "User-Agent": "TheBibleModel/10.0-EXPERIMENTAL"}
+def get_kenpom_data(endpoint, arg=None):
+    """
+    Fetch data from KenPom API.
+    Supports 'y' (Year) for ratings or 'd' (Date) for FanMatch.
+    """
+    # Default to current season if no arg provided, otherwise use the arg provided (like &d=...)
+    query_param = f"&y={2026}" if arg is None else arg
+    
+    url = f"https://kenpom.com/api.php?endpoint={endpoint}{query_param}"
+    headers = {"Authorization": f"Bearer {KP_API_KEY}", "User-Agent": "TheBibleModel/10.0-PROD"}
+    
     try:
         response = requests.get(url, headers=headers, timeout=15)
         response.raise_for_status()
-        if endpoint == "misc-stats": return pd.read_csv(StringIO(response.text))
+        if endpoint == "misc-stats": 
+            return pd.read_csv(StringIO(response.text))
         return pd.DataFrame(response.json())
     except Exception as e:
-        print(f"⚠️  API Error ({endpoint}): {e}"); return None
+        print(f"⚠️  API Error ({endpoint}): {e}")
+        return None
+
+def get_daily_schedule():
+    """Fetch today's games from KenPom FanMatch."""
+    print("📅 Fetching Today's Schedule (FanMatch)...")
+    
+    # 1. Get Today's Date in YYYY-MM-DD format (Required by API)
+    today_str = datetime.now().strftime('%Y-%m-%d')
+    date_param = f"&d={today_str}"
+    
+    # 2. Call FanMatch with the date parameter
+    df = get_kenpom_data("fanmatch", arg=date_param)
+    
+    if df is not None and not df.empty:
+        # Standardize names immediately
+        if 'Visitor' in df.columns: df['Visitor'] = df['Visitor'].apply(standardize_name)
+        if 'Home' in df.columns: df['Home'] = df['Home'].apply(standardize_name)
+        print(f"   ✅ Found {len(df)} games scheduled for {today_str}.")
+        return df
+        
+    print(f"   ⚠️ No games found for {today_str} or API error.")
+    return None
 
 def load_quadrant_data():
     if not os.path.exists(QUADRANT_DATA_PATH): return None
@@ -192,8 +221,10 @@ def load_validated_location_data():
 
 def build_team_database():
     print("🏗️  Building Enhanced Team Database (V10)...")
+    # These calls use the default 'y=2026' behavior
     ratings = get_kenpom_data("ratings")
     factors = get_kenpom_data("four-factors")
+    
     if ratings is None or factors is None: return None, None, None, None, None, None
     
     if 'Rank' not in ratings.columns: ratings['Rank'] = ratings.index + 1
@@ -279,7 +310,7 @@ def compute_bayesian_quadrant_adjustment(team, opp_rank, quad_data):
     if pd.isna(net_eff) or games < QUADRANT_CREDIBILITY_THRESHOLD: return 0.0, "", ""
     shrinkage = games / (games + BAYESIAN_PRIOR_WEIGHT)
     delta = net_eff - base_eff
-    if net_eff > 0 and delta < 0: delta = 0.0 # Elite protection
+    if net_eff > 0 and delta < 0: delta = 0.0 
     adj = delta * shrinkage
     if consistency < 12.0: adj *= 1.2
     elif consistency > 20.0: adj *= 0.7
@@ -351,24 +382,14 @@ def run_simulation(v_name, h_name, stats, style, quad, eff, h_perf, r_perf, spre
     sims = np.random.normal(margin, s_var, SIM_RUNS)
     win_prob = np.mean(sims > 0) * 100
     
-    # 8. Signals (FIXED LOGIC FOR VISITOR SIGN)
+    # 8. Signals
     signals = []
     if spread is not None:
-        # Input assumes Home Line: -X is favorite, +X is underdog
         market_margin = -spread 
         edge = abs(margin - market_margin)
-        
         if edge >= SPREAD_EDGE_THRESHOLD:
-            # Determine Side
-            if margin > market_margin: 
-                # Model thinks Home is better than Market Line -> Bet Home
-                side = h_name
-                bet_line = spread # e.g. -9.5
-            else:
-                # Model thinks Home is worse than Market Line -> Bet Visitor
-                side = v_name
-                bet_line = -spread # e.g. +9.5 (Flip sign for visitor)
-                
+            if margin > market_margin: side = h_name; bet_line = spread
+            else: side = v_name; bet_line = -spread
             conf = "HIGH" if edge >= HIGH_CONFIDENCE_SPREAD else "MEDIUM"
             signals.append(f"SPREAD: {side} {bet_line:+.1f} (Edge: {edge:.1f}, {conf})")
             
@@ -389,7 +410,7 @@ def run_simulation(v_name, h_name, stats, style, quad, eff, h_perf, r_perf, spre
         'V_Score': round(v_score, 1), 'H_Score': round(h_score, 1),
         'Predicted_Spread': round(margin, 1), 'Predicted_Total': round(proj_total, 1),
         'Home_Win_Prob': round(win_prob, 1),
-        'Signals': signals,
+        'Signals': "; ".join(signals),
         'Analysis_Flags': " | ".join(flags),
         'PhD_Reasoning': loc_reason if loc_conf != 'NO_DATA' else "Standard HCA Used"
     }
@@ -398,11 +419,66 @@ def run_simulation(v_name, h_name, stats, style, quad, eff, h_perf, r_perf, spre
 # SECTION 4: INTERFACE & AUTOMATION
 # ======================================================
 
-# ... (Keep all your existing functions above this line) ...
+def run_daily_automation(stats, style, quad, eff, h_perf, r_perf):
+    """Fetch schedule, run all games, save report."""
+    schedule = get_daily_schedule()
+    if schedule is None: return
+
+    print(f"\n🚀 Running V10 Simulation on {len(schedule)} Games...")
+    results = []
+    
+    for i, row in schedule.iterrows():
+        v = row['Visitor']; h = row['Home']
+        # Try to get market lines if FanMatch provides them, else None
+        spread = None; total = None 
+        
+        res = run_simulation(v, h, stats, style, quad, eff, h_perf, r_perf, spread, total)
+        if "error" not in res:
+            # Format betting line for display (favorites negative)
+            disp_line = -res['Predicted_Spread']
+            
+            results.append({
+                'Time': row.get('Time', 'N/A'),
+                'Visitor': v, 'Home': h,
+                'V_Score': res['V_Score'], 'H_Score': res['H_Score'],
+                'Model_Line': disp_line,
+                'Model_Total': res['Predicted_Total'],
+                'Win_Prob': res['Home_Win_Prob'],
+                'Signals': res['Signals'],
+                'Intelligence': res['Analysis_Flags']
+            })
+            # Print brief progress
+            if i % 10 == 0: print(f"   ... Processed {i+1}/{len(schedule)} games")
+
+    # Save Report
+    if results:
+        df_res = pd.DataFrame(results)
+        filename = f"V10_Betting_Sheet_{datetime.now().strftime('%Y-%m-%d')}.csv"
+        df_res.to_csv(filename, index=False)
+        print(f"\n✅ DONE! processed {len(results)} games.")
+        print(f"📄 Betting Sheet Saved: {filename}")
+
+def run_single_game(stats, style, quad, eff, h_perf, r_perf):
+    v = input("Visitor: "); h = input("Home: ")
+    s = input("Spread (opt, Home Line e.g. -5.5): ")
+    t = input("Total (opt): ")
+    res = run_simulation(v, h, stats, style, quad, eff, h_perf, r_perf, float(s) if s else None, float(t) if t else None)
+    
+    if "error" in res: print(f"❌ Error: {res['error']}"); return
+
+    disp_line = -res['Predicted_Spread']
+    print(f"\n📊 PREDICTION:")
+    print(f"   Score: {res['Visitor']} {res['V_Score']} - {res['Home']} {res['H_Score']}")
+    print(f"   Line:  {res['Home']} {disp_line:+.1f}")
+    print(f"   Total: {res['Predicted_Total']:.1f}")
+    print(f"   Win%:  {res['Home_Win_Prob']}%")
+    print(f"\n🧠 INTELLIGENCE:")
+    print(f"   Flags: {res['Analysis_Flags']}")
+    print(f"   Location Logic: {res['PhD_Reasoning']}")
+    if res['Signals']: print(f"\n💰 SIGNALS: {res['Signals']}")
+    print("="*80 + "\n")
 
 if __name__ == "__main__":
-    import sys
-    
     # Load Data Once
     stats, style, quad, eff, h_perf, r_perf = build_team_database()
     
