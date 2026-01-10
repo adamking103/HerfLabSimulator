@@ -1,0 +1,57 @@
+[05:55:54] 
+============================================================
+[05:55:54] 🚀 ESPN SCRAPER V2.3 (DOUBLE TURBO)
+[05:55:54] ============================================================
+[05:55:54] 📅 Building schedule from 2025-11-02 to 2026-01-10...
+[05:55:54]    ⚡ Scanning 70 days of calendars in parallel...
+[05:55:59] ✅ Schedule built: Found 3157 completed games
+[05:55:59] ⚡ Downloading shot data for 3157 games...
+[05:56:09]    ✓ 100/3157 games processed... (16,182 shots)
+[05:56:17]    ✓ 200/3157 games processed... (32,481 shots)
+[05:56:24]    ✓ 300/3157 games processed... (48,159 shots)
+[05:56:32]    ✓ 400/3157 games processed... (64,527 shots)
+[05:56:39]    ✓ 500/3157 games processed... (81,093 shots)
+[05:56:47]    ✓ 600/3157 games processed... (97,417 shots)
+[05:56:54]    ✓ 700/3157 games processed... (113,148 shots)
+[05:57:02]    ✓ 800/3157 games processed... (129,297 shots)
+[05:57:09]    ✓ 900/3157 games processed... (145,202 shots)
+[05:57:16]    ✓ 1000/3157 games processed... (161,125 shots)
+[05:57:22]    ✓ 1100/3157 games processed... (177,358 shots)
+[05:57:29]    ✓ 1200/3157 games processed... (193,419 shots)
+[05:57:36]    ✓ 1300/3157 games processed... (209,419 shots)
+[05:57:43]    ✓ 1400/3157 games processed... (225,094 shots)
+[05:57:50]    ✓ 1500/3157 games processed... (240,676 shots)
+[05:57:57]    ✓ 1600/3157 games processed... (256,129 shots)
+[05:58:04]    ✓ 1700/3157 games processed... (271,777 shots)
+[05:58:11]    ✓ 1800/3157 games processed... (287,235 shots)
+[05:58:18]    ✓ 1900/3157 games processed... (303,285 shots)
+[05:58:25]    ✓ 2000/3157 games processed... (319,066 shots)
+[05:58:32]    ✓ 2100/3157 games processed... (334,647 shots)
+[05:58:39]    ✓ 2200/3157 games processed... (349,814 shots)
+[05:58:46]    ✓ 2300/3157 games processed... (363,882 shots)
+[05:58:54]    ✓ 2400/3157 games processed... (378,087 shots)
+[05:59:01]    ✓ 2500/3157 games processed... (392,192 shots)
+[05:59:08]    ✓ 2600/3157 games processed... (406,290 shots)
+[05:59:15]    ✓ 2700/3157 games processed... (420,417 shots)
+[05:59:22]    ✓ 2800/3157 games processed... (434,545 shots)
+[05:59:29]    ✓ 2900/3157 games processed... (448,605 shots)
+[05:59:36]    ✓ 3000/3157 games processed... (462,628 shots)
+[05:59:43]    ✓ 3100/3157 games processed... (476,894 shots)
+[05:59:47] 
+✅ Scraping complete: 484,801 shots
+[05:59:47] 🧹 Removed 1861 invalid shots (0.4%)
+[05:59:47] 
+📊 Calculating team statistics...
+[05:59:48]    ✅ Stats calculated for 719 teams
+[05:59:48] 📦 Old file backed up: C:\Users\adamc\OneDrive\Desktop\HerfLab_Deploy\cbb_style_backup_20260110_055948.csv
+[05:59:48] 💾 Saved to: C:\Users\adamc\OneDrive\Desktop\HerfLab_Deploy\cbb_style_2025_complete.csv
+[05:59:48] 
+📋 Top 5 Defensive Rim Protectors:
+[05:59:48]                play_team  opp_rim_rate  opp_rim_pct
+   South Alabama Jaguars          34.4         64.6
+    Nebraska Cornhuskers          44.1         62.1
+ Louisiana Tech Bulldogs          45.3         64.7
+Illinois Fighting Illini          45.6         58.3
+     Michigan Wolverines          46.1         58.7
+[05:59:48] 
+🏁 COMPLETE in 234.0 seconds (3.9 minutes)

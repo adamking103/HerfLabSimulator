@@ -4,7 +4,7 @@ import numpy as np
 import os
 import sys
 from io import StringIO
-from datetime import datetime, timedelta
+from datetime import datetime
 from scipy import stats
 from typing import Tuple, Dict, List, Optional
 import warnings
@@ -15,12 +15,12 @@ warnings.filterwarnings('ignore')
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # ==============================================================================
-#   THE BIBLE V10.0 - PRODUCTION AUTOMATION EDITION
+#   THE BIBLE V10.0 - PRODUCTION EDITION (MANUAL MODE)
 #   
 #   Features:
-#   1. "Daily Slate" Automator (Uses KenPom FanMatch with Date)
-#   2. Automatic CSV Report Generation
-#   3. Full Integration of PhD-Level Location & Bayesian Adjustments
+#   1. "PhD-Level" Home/Road Splits (Validated)
+#   2. Bayesian Opponent Quality Adjustments
+#   3. Empirical Bayes Variance Estimation
 # ==============================================================================
 
 # --- CONFIGURATION ---
@@ -152,47 +152,16 @@ HIGH_CONFIDENCE_SPREAD = 4.0
 # SECTION 1: DATA LOADING
 # ======================================================
 
-def get_kenpom_data(endpoint, arg=None):
-    """
-    Fetch data from KenPom API.
-    Supports 'y' (Year) for ratings or 'd' (Date) for FanMatch.
-    """
-    # Default to current season if no arg provided, otherwise use the arg provided (like &d=...)
-    query_param = f"&y={2026}" if arg is None else arg
-    
-    url = f"https://kenpom.com/api.php?endpoint={endpoint}{query_param}"
+def get_kenpom_data(endpoint, year=2026):
+    url = f"https://kenpom.com/api.php?endpoint={endpoint}&y={year}"
     headers = {"Authorization": f"Bearer {KP_API_KEY}", "User-Agent": "TheBibleModel/10.0-PROD"}
-    
     try:
         response = requests.get(url, headers=headers, timeout=15)
         response.raise_for_status()
-        if endpoint == "misc-stats": 
-            return pd.read_csv(StringIO(response.text))
+        if endpoint == "misc-stats": return pd.read_csv(StringIO(response.text))
         return pd.DataFrame(response.json())
     except Exception as e:
-        print(f"⚠️  API Error ({endpoint}): {e}")
-        return None
-
-def get_daily_schedule():
-    """Fetch today's games from KenPom FanMatch."""
-    print("📅 Fetching Today's Schedule (FanMatch)...")
-    
-    # 1. Get Today's Date in YYYY-MM-DD format (Required by API)
-    today_str = datetime.now().strftime('%Y-%m-%d')
-    date_param = f"&d={today_str}"
-    
-    # 2. Call FanMatch with the date parameter
-    df = get_kenpom_data("fanmatch", arg=date_param)
-    
-    if df is not None and not df.empty:
-        # Standardize names immediately
-        if 'Visitor' in df.columns: df['Visitor'] = df['Visitor'].apply(standardize_name)
-        if 'Home' in df.columns: df['Home'] = df['Home'].apply(standardize_name)
-        print(f"   ✅ Found {len(df)} games scheduled for {today_str}.")
-        return df
-        
-    print(f"   ⚠️ No games found for {today_str} or API error.")
-    return None
+        print(f"⚠️  API Error ({endpoint}): {e}"); return None
 
 def load_quadrant_data():
     if not os.path.exists(QUADRANT_DATA_PATH): return None
@@ -221,10 +190,8 @@ def load_validated_location_data():
 
 def build_team_database():
     print("🏗️  Building Enhanced Team Database (V10)...")
-    # These calls use the default 'y=2026' behavior
     ratings = get_kenpom_data("ratings")
     factors = get_kenpom_data("four-factors")
-    
     if ratings is None or factors is None: return None, None, None, None, None, None
     
     if 'Rank' not in ratings.columns: ratings['Rank'] = ratings.index + 1
@@ -416,47 +383,8 @@ def run_simulation(v_name, h_name, stats, style, quad, eff, h_perf, r_perf, spre
     }
 
 # ======================================================
-# SECTION 4: INTERFACE & AUTOMATION
+# SECTION 4: INTERFACE
 # ======================================================
-
-def run_daily_automation(stats, style, quad, eff, h_perf, r_perf):
-    """Fetch schedule, run all games, save report."""
-    schedule = get_daily_schedule()
-    if schedule is None: return
-
-    print(f"\n🚀 Running V10 Simulation on {len(schedule)} Games...")
-    results = []
-    
-    for i, row in schedule.iterrows():
-        v = row['Visitor']; h = row['Home']
-        # Try to get market lines if FanMatch provides them, else None
-        spread = None; total = None 
-        
-        res = run_simulation(v, h, stats, style, quad, eff, h_perf, r_perf, spread, total)
-        if "error" not in res:
-            # Format betting line for display (favorites negative)
-            disp_line = -res['Predicted_Spread']
-            
-            results.append({
-                'Time': row.get('Time', 'N/A'),
-                'Visitor': v, 'Home': h,
-                'V_Score': res['V_Score'], 'H_Score': res['H_Score'],
-                'Model_Line': disp_line,
-                'Model_Total': res['Predicted_Total'],
-                'Win_Prob': res['Home_Win_Prob'],
-                'Signals': res['Signals'],
-                'Intelligence': res['Analysis_Flags']
-            })
-            # Print brief progress
-            if i % 10 == 0: print(f"   ... Processed {i+1}/{len(schedule)} games")
-
-    # Save Report
-    if results:
-        df_res = pd.DataFrame(results)
-        filename = f"V10_Betting_Sheet_{datetime.now().strftime('%Y-%m-%d')}.csv"
-        df_res.to_csv(filename, index=False)
-        print(f"\n✅ DONE! processed {len(results)} games.")
-        print(f"📄 Betting Sheet Saved: {filename}")
 
 def run_single_game(stats, style, quad, eff, h_perf, r_perf):
     v = input("Visitor: "); h = input("Home: ")
@@ -483,20 +411,11 @@ if __name__ == "__main__":
     stats, style, quad, eff, h_perf, r_perf = build_team_database()
     
     if stats is not None:
-        # CHECK FOR AUTOMATION FLAG (Added for Batch File)
-        if len(sys.argv) > 1 and sys.argv[1] == "auto":
-            print("\n🤖 AUTOMATION MODE DETECTED")
-            run_daily_automation(stats, style, quad, eff, h_perf, r_perf)
-        
-        # STANDARD INTERACTIVE MODE
-        else:
-            while True:
-                print("\nTHE BIBLE V10 (PRODUCTION)")
-                print("1. Predict Single Game")
-                print("2. Run Full Daily Schedule (FanMatch)")
-                print("3. Exit")
-                choice = input("Select: ")
-                
-                if choice == "1": run_single_game(stats, style, quad, eff, h_perf, r_perf)
-                elif choice == "2": run_daily_automation(stats, style, quad, eff, h_perf, r_perf)
-                elif choice == "3": break
+        while True:
+            print("\nTHE BIBLE V10 (PRODUCTION)")
+            print("1. Predict Single Game")
+            print("2. Exit")
+            choice = input("Select: ")
+            
+            if choice == "1": run_single_game(stats, style, quad, eff, h_perf, r_perf)
+            elif choice == "2": break
