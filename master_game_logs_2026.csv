@@ -5155,7 +5155,7 @@ Date,Team,Opponent,Location,Result,TeamScore,OpponentScore,Margin,TotalPoints,Is
 2026-01-09,Akron Zips,Bowling Green,Away,W,77,67,10,144,False
 2026-01-09,Bowling Green Falcons,Akron,Home,L,67,77,-10,144,False
 2026-01-09,Canisius Golden Griffins,Manhattan,Away,W,70,64,6,134,False
-2026-01-09,Cleveland State Vikings,Oakland,Away,L,72,97,-25,169,False
+2026-01-09,Cleveland State Vikings,Oakland,Away,L,74,97,-23,171,False
 2026-01-09,Colorado State Rams,UNLV,Home,W,70,62,8,132,False
 2026-01-09,Detroit Mercy Titans,Wright State,Home,L,82,84,-2,166,False
 2026-01-09,Fairfield Stags,Rider,Home,W,68,62,6,130,False
@@ -5171,7 +5171,7 @@ Date,Team,Opponent,Location,Result,TeamScore,OpponentScore,Margin,TotalPoints,Is
 2026-01-09,Mount St. Mary's Mountaineers,Saint Peter's,Home,W,70,65,5,135,False
 2026-01-09,Niagara Purple Eagles,Iona,Away,L,53,71,-18,124,False
 2026-01-09,Northern Kentucky Norse,Milwaukee,Away,W,85,67,18,152,False
-2026-01-09,Oakland Golden Grizzlies,Cleveland State,Home,W,97,72,25,169,False
+2026-01-09,Oakland Golden Grizzlies,Cleveland State,Home,W,97,74,23,171,False
 2026-01-09,Rider Broncs,Fairfield,Away,L,62,68,-6,130,False
 2026-01-09,Sacred Heart Pioneers,Marist,Home,L,72,76,-4,148,False
 2026-01-09,Saint Peter's Peacocks,Mount St. Mary's,Away,L,65,70,-5,135,False
@@ -5180,3 +5180,298 @@ Date,Team,Opponent,Location,Result,TeamScore,OpponentScore,Margin,TotalPoints,Is
 2026-01-09,UNLV Rebels,Colorado State,Away,L,62,70,-8,132,False
 2026-01-09,USC Trojans,Minnesota,Away,W,70,69,1,139,True
 2026-01-09,Wright State Raiders,Detroit Mercy,Away,W,84,82,2,166,False
+2026-01-10,Abilene Christian Wildcats,UT Arlington,Away,L,72,82,-10,154,False
+2026-01-10,Air Force Falcons,New Mexico,Home,L,49,91,-42,140,False
+2026-01-10,Alabama A&M Bulldogs,Alcorn State,Home,L,62,64,-2,126,False
+2026-01-10,Alabama Crimson Tide,Texas,Home,L,88,92,-4,180,False
+2026-01-10,Alabama State Hornets,Jackson State,Home,L,64,75,-11,139,False
+2026-01-10,Alcorn State Braves,Alabama A&M,Away,W,64,62,2,126,False
+2026-01-10,American University Eagles,Holy Cross,Home,L,73,84,-11,157,False
+2026-01-10,App State Mountaineers,Coastal Carolina,Away,L,62,67,-5,129,False
+2026-01-10,Arizona State Sun Devils,Kansas State,Home,W,87,84,3,171,False
+2026-01-10,Arizona Wildcats,TCU,Away,W,86,73,13,159,False
+2026-01-10,Arkansas Razorbacks,Auburn,Away,L,73,95,-22,168,False
+2026-01-10,Arkansas State Red Wolves,Texas State,Home,W,83,82,1,165,False
+2026-01-10,Arkansas-Pine Bluff Golden Lions,Texas Southern,Away,W,74,66,8,140,False
+2026-01-10,Army Black Knights,Boston University,Away,L,91,100,-9,191,False
+2026-01-10,Auburn Tigers,15Arkansas,Home,W,95,73,22,168,False
+2026-01-10,Austin Peay Governors,Stetson,Away,W,81,69,12,150,False
+2026-01-10,BYU Cougars,Utah,Away,W,89,84,5,173,False
+2026-01-10,Ball State Cardinals,Massachusetts,Away,L,71,79,-8,150,False
+2026-01-10,Baylor Bears,7Houston,Home,L,55,77,-22,132,False
+2026-01-10,Bellarmine Knights,North Alabama,Home,L,73,82,-9,155,False
+2026-01-10,Belmont Bruins,Drake,Away,W,78,76,2,154,False
+2026-01-10,Bethune-Cookman Wildcats,Grambling,Home,W,74,65,9,139,False
+2026-01-10,Binghamton Bearcats,UMass Lowell,Home,L,68,73,-5,141,False
+2026-01-10,Boise State Broncos,Utah State,Home,L,68,93,-25,161,False
+2026-01-10,Boston College Eagles,20Louisville,Away,L,62,75,-13,137,False
+2026-01-10,Boston University Terriers,Army,Home,W,100,91,9,191,False
+2026-01-10,Bradley Braves,Northern Iowa,Home,W,75,69,6,144,False
+2026-01-10,Brown Bears,Pennsylvania,Away,L,73,81,-8,154,False
+2026-01-10,Bryant Bulldogs,UAlbany,Away,L,46,71,-25,117,False
+2026-01-10,Bucknell Bison,Loyola Maryland,Home,W,70,67,3,137,False
+2026-01-10,Buffalo Bulls,Ohio,Away,L,80,91,-11,171,False
+2026-01-10,Cal Poly Mustangs,UC Davis,Home,W,84,78,6,162,False
+2026-01-10,Cal State Bakersfield Roadrunners,Long Beach State,Away,L,75,81,-6,156,False
+2026-01-10,Cal State Fullerton Titans,Cal State Northridge,Home,W,86,79,7,165,False
+2026-01-10,Cal State Northridge Matadors,Cal State Fullerton,Away,L,79,86,-7,165,False
+2026-01-10,California Baptist Lancers,Southern Utah,Home,W,58,55,3,113,False
+2026-01-10,California Golden Bears,Virginia Tech,Away,L,75,78,-3,153,False
+2026-01-10,Campbell Fighting Camels,Elon,Away,L,82,83,-1,165,False
+2026-01-10,Central Arkansas Bears,Eastern Kentucky,Away,L,75,79,-4,154,True
+2026-01-10,Central Connecticut Blue Devils,Le Moyne,Away,W,69,59,10,128,False
+2026-01-10,Central Michigan Chippewas,Kent State,Home,W,87,85,2,172,False
+2026-01-10,Charleston Cougars,Hampton,Home,W,74,70,4,144,False
+2026-01-10,Charleston Southern Buccaneers,High Point,Home,L,82,84,-2,166,True
+2026-01-10,Chattanooga Mocs,Samford,Home,W,88,79,9,167,False
+2026-01-10,Chicago State Cougars,Stonehill,Away,L,82,85,-3,167,True
+2026-01-10,Clemson Tigers,Notre Dame,Away,W,76,61,15,137,False
+2026-01-10,Coastal Carolina Chanticleers,App State,Home,W,67,62,5,129,False
+2026-01-10,Colgate Raiders,Lehigh,Home,L,77,78,-1,155,False
+2026-01-10,Colorado Buffaloes,14Texas Tech,Home,L,71,73,-2,144,False
+2026-01-10,Columbia Lions,Harvard,Home,L,54,79,-25,133,False
+2026-01-10,Coppin State Eagles,North Carolina Central,Home,L,77,88,-11,165,False
+2026-01-10,Cornell Big Red,Dartmouth,Home,L,91,102,-11,193,False
+2026-01-10,Creighton Bluejays,St. John's,Home,L,73,90,-17,163,False
+2026-01-10,Dartmouth Big Green,Cornell,Away,W,102,91,11,193,False
+2026-01-10,Davidson Wildcats,Rhode Island,Home,L,45,70,-25,115,False
+2026-01-10,DePaul Blue Demons,4UConn,Away,L,60,72,-12,132,False
+2026-01-10,Delaware Blue Hens,Louisiana Tech,Away,L,68,70,-2,138,True
+2026-01-10,Delaware State Hornets,Norfolk State,Home,L,64,66,-2,130,False
+2026-01-10,Denver Pioneers,South Dakota,Away,L,72,82,-10,154,False
+2026-01-10,Drake Bulldogs,Belmont,Home,L,76,78,-2,154,False
+2026-01-10,Drexel Dragons,William & Mary,Home,W,64,58,6,122,False
+2026-01-10,Duke Blue Devils,24SMU,Home,W,82,75,7,157,False
+2026-01-10,East Tennessee State Buccaneers,UNC Greensboro,Home,W,86,60,26,146,False
+2026-01-10,East Texas A&M Lions,UT Rio Grande Valley,Home,W,77,69,8,146,False
+2026-01-10,Eastern Illinois Panthers,Tennessee State,Home,W,74,70,4,144,False
+2026-01-10,Eastern Kentucky Colonels,Central Arkansas,Home,W,79,75,4,154,True
+2026-01-10,Eastern Michigan Eagles,Western Michigan,Away,L,62,79,-17,141,False
+2026-01-10,Eastern Washington Eagles,Montana,Home,W,66,65,1,131,False
+2026-01-10,Elon Phoenix,Campbell,Home,W,83,82,1,165,False
+2026-01-10,Evansville Purple Aces,Indiana State,Away,W,72,69,3,141,False
+2026-01-10,Fairleigh Dickinson Knights,New Haven,Away,L,55,65,-10,120,False
+2026-01-10,Florida A&M Rattlers,Southern,Home,W,67,59,8,126,False
+2026-01-10,Florida Gators,21Tennessee,Home,W,91,67,24,158,False
+2026-01-10,Florida Gulf Coast Eagles,Lipscomb,Home,L,77,84,-7,161,False
+2026-01-10,Florida International Panthers,Missouri State,Away,L,71,79,-8,150,False
+2026-01-10,Florida State Seminoles,NC State,Home,L,69,113,-44,182,False
+2026-01-10,Fordham Rams,St. Bonaventure,Away,W,81,77,4,158,False
+2026-01-10,Fresno State Bulldogs,San Diego State,Away,L,52,71,-19,123,False
+2026-01-10,Furman Paladins,VMI,Home,W,69,48,21,117,False
+2026-01-10,George Mason Patriots,VCU,Home,W,86,80,6,166,False
+2026-01-10,George Washington Revolutionaries,Loyola Chicago,Home,W,101,66,35,167,False
+2026-01-10,Georgetown Hoyas,Seton Hall,Home,L,67,76,-9,143,False
+2026-01-10,Georgia Bulldogs,South Carolina,Away,W,75,70,5,145,False
+2026-01-10,Georgia Southern Eagles,South Alabama,Away,L,71,87,-16,158,False
+2026-01-10,Georgia State Panthers,Marshall,Home,W,81,73,8,154,False
+2026-01-10,Georgia Tech Yellow Jackets,Miami,Away,L,81,91,-10,172,False
+2026-01-10,Grambling Tigers,Bethune-Cookman,Away,L,65,74,-9,139,False
+2026-01-10,Grand Canyon Lopes,San José State,Home,W,76,58,18,134,False
+2026-01-10,Hampton Pirates,Charleston,Away,L,70,74,-4,144,False
+2026-01-10,Harvard Crimson,Columbia,Away,W,79,54,25,133,False
+2026-01-10,Hawai'i Rainbow Warriors,UC Irvine,Home,W,67,66,1,133,False
+2026-01-10,High Point Panthers,Charleston Southern,Away,W,84,82,2,166,True
+2026-01-10,Hofstra Pride,Monmouth,Home,W,67,64,3,131,True
+2026-01-10,Holy Cross Crusaders,American University,Away,W,84,73,11,157,False
+2026-01-10,Houston Christian Huskies,Stephen F. Austin,Away,L,67,85,-18,152,False
+2026-01-10,Houston Cougars,Baylor,Away,W,77,55,22,132,False
+2026-01-10,Howard Bison,Maryland Eastern Shore,Away,L,57,69,-12,126,False
+2026-01-10,Idaho State Bengals,Northern Arizona,Away,W,81,79,2,160,False
+2026-01-10,Idaho Vandals,Montana State,Home,W,92,89,3,181,False
+2026-01-10,Illinois State Redbirds,UIC,Home,L,59,63,-4,122,True
+2026-01-10,Incarnate Word Cardinals,Lamar,Away,L,51,63,-12,114,False
+2026-01-10,Indiana Hoosiers,10Nebraska,Home,L,77,83,-6,160,False
+2026-01-10,Indiana State Sycamores,Evansville,Home,L,69,72,-3,141,False
+2026-01-10,Iowa State Cyclones,Oklahoma State,Home,W,83,71,12,154,False
+2026-01-10,Jackson State Tigers,Alabama State,Away,W,75,64,11,139,False
+2026-01-10,Jacksonville Dolphins,West Georgia,Home,W,75,43,32,118,False
+2026-01-10,Jacksonville State Gamecocks,Kennesaw State,Away,L,82,88,-6,170,False
+2026-01-10,James Madison Dukes,Old Dominion,Home,W,70,69,1,139,False
+2026-01-10,Kansas City Roos,North Dakota,Home,L,79,81,-2,160,False
+2026-01-10,Kansas Jayhawks,West Virginia,Away,L,75,86,-11,161,False
+2026-01-10,Kansas State Wildcats,Arizona State,Away,L,84,87,-3,171,False
+2026-01-10,Kennesaw State Owls,Jacksonville State,Home,W,88,82,6,170,False
+2026-01-10,Kent State Golden Flashes,Central Michigan,Away,L,85,87,-2,172,False
+2026-01-10,Kentucky Wildcats,Mississippi State,Home,W,92,68,24,160,False
+2026-01-10,LSU Tigers,11Vanderbilt,Away,L,73,84,-11,157,False
+2026-01-10,La Salle Explorers,Saint Louis,Home,L,72,84,-12,156,False
+2026-01-10,Lafayette Leopards,Navy,Away,L,50,76,-26,126,False
+2026-01-10,Lamar Cardinals,Incarnate Word,Home,W,63,51,12,114,False
+2026-01-10,Le Moyne Dolphins,Central Connecticut,Home,L,59,69,-10,128,False
+2026-01-10,Lehigh Mountain Hawks,Colgate,Away,W,78,77,1,155,False
+2026-01-10,Liberty Flames,Sam Houston,Away,W,82,74,8,156,False
+2026-01-10,Lipscomb Bisons,Florida Gulf Coast,Away,W,84,77,7,161,False
+2026-01-10,Little Rock Trojans,Lindenwood,Away,W,82,74,8,156,False
+2026-01-10,Long Beach State Beach,Cal State Bakersfield,Home,W,81,75,6,156,False
+2026-01-10,Long Island University Sharks,Saint Francis,Home,W,67,63,4,130,False
+2026-01-10,Longwood Lancers,Presbyterian,Home,W,77,70,7,147,False
+2026-01-10,Louisiana Ragin' Cajuns,Troy,Home,L,70,90,-20,160,False
+2026-01-10,Louisiana Tech Bulldogs,Delaware,Home,W,70,68,2,138,True
+2026-01-10,Louisville Cardinals,Boston College,Home,W,75,62,13,137,False
+2026-01-10,Loyola Chicago Ramblers,George Washington,Away,L,66,101,-35,167,False
+2026-01-10,Loyola Maryland Greyhounds,Bucknell,Away,L,67,70,-3,137,False
+2026-01-10,Loyola Marymount Lions,Santa Clara,Away,L,72,103,-31,175,False
+2026-01-10,Maine Black Bears,NJIT,Away,W,74,70,4,144,False
+2026-01-10,Marquette Golden Eagles,Villanova,Home,L,73,76,-3,149,False
+2026-01-10,Marshall Thundering Herd,Georgia State,Away,L,73,81,-8,154,False
+2026-01-10,Maryland Eastern Shore Hawks,Howard,Home,W,69,57,12,126,False
+2026-01-10,Maryland Terrapins,UCLA,Away,L,55,67,-12,122,False
+2026-01-10,Massachusetts Minutemen,Ball State,Home,W,79,71,8,150,False
+2026-01-10,McNeese Cowboys,SE Louisiana,Home,W,73,61,12,134,False
+2026-01-10,Mercer Bears,Wofford,Home,W,109,97,12,206,False
+2026-01-10,Mercyhurst Lakers,Wagner,Away,W,70,69,1,139,False
+2026-01-10,Miami Hurricanes,Georgia Tech,Home,W,91,81,10,172,False
+2026-01-10,Michigan Wolverines,Wisconsin,Home,L,88,91,-3,179,False
+2026-01-10,Middle Tennessee Blue Raiders,New Mexico State,Away,W,59,55,4,114,False
+2026-01-10,Mississippi State Bulldogs,Kentucky,Away,L,68,92,-24,160,False
+2026-01-10,Mississippi Valley State Delta Devils,Prairie View A&M,Away,L,69,70,-1,139,False
+2026-01-10,Missouri State Bears,Florida International,Home,W,79,71,8,150,False
+2026-01-10,Missouri Tigers,Ole Miss,Away,L,69,76,-7,145,False
+2026-01-10,Monmouth Hawks,Hofstra,Away,L,64,67,-3,131,True
+2026-01-10,Montana Grizzlies,Eastern Washington,Away,L,65,66,-1,131,False
+2026-01-10,Montana State Bobcats,Idaho,Away,L,89,92,-3,181,False
+2026-01-10,Morehead State Eagles,Southeast Missouri State,Home,W,71,69,2,140,False
+2026-01-10,Morgan State Bears,South Carolina State,Home,W,72,67,5,139,False
+2026-01-10,Murray State Racers,Valparaiso,Home,W,92,79,13,171,False
+2026-01-10,NC State Wolfpack,Florida State,Away,W,113,69,44,182,False
+2026-01-10,NJIT Highlanders,Maine,Home,L,70,74,-4,144,False
+2026-01-10,Navy Midshipmen,Lafayette,Home,W,76,50,26,126,False
+2026-01-10,Nebraska Cornhuskers,Indiana,Away,W,83,77,6,160,False
+2026-01-10,Nevada Wolf Pack,Wyoming,Home,W,92,83,9,175,False
+2026-01-10,New Hampshire Wildcats,UMBC,Away,L,74,75,-1,149,False
+2026-01-10,New Haven Chargers,Fairleigh Dickinson,Home,W,65,55,10,120,False
+2026-01-10,New Mexico Lobos,Air Force,Away,W,91,49,42,140,False
+2026-01-10,New Mexico State Aggies,Middle Tennessee,Home,L,55,59,-4,114,False
+2026-01-10,New Orleans Privateers,Nicholls,Home,L,77,90,-13,167,False
+2026-01-10,Nicholls Colonels,New Orleans,Away,W,90,77,13,167,False
+2026-01-10,Norfolk State Spartans,Delaware State,Away,W,66,64,2,130,False
+2026-01-10,North Alabama Lions,Bellarmine,Away,W,82,73,9,155,False
+2026-01-10,North Carolina Central Eagles,Coppin State,Away,W,88,77,11,165,False
+2026-01-10,North Carolina Tar Heels,Wake Forest,Home,W,87,84,3,171,False
+2026-01-10,North Dakota Fighting Hawks,Kansas City,Away,W,81,79,2,160,False
+2026-01-10,North Dakota State Bison,Omaha,Away,W,78,76,2,154,False
+2026-01-10,North Florida Ospreys,Queens University,Home,L,82,89,-7,171,False
+2026-01-10,Northeastern Huskies,Towson,Home,L,78,87,-9,165,False
+2026-01-10,Northern Arizona Lumberjacks,Idaho State,Home,L,79,81,-2,160,False
+2026-01-10,Northern Colorado Bears,Weber State,Home,L,71,76,-5,147,False
+2026-01-10,Northern Iowa Panthers,Bradley,Away,L,69,75,-6,144,False
+2026-01-10,Northwestern State Demons,Texas A&M-Corpus Christi,Home,W,79,78,1,157,False
+2026-01-10,Notre Dame Fighting Irish,Clemson,Home,L,61,76,-15,137,False
+2026-01-10,Ohio Bobcats,Buffalo,Home,W,91,80,11,171,False
+2026-01-10,Oklahoma Sooners,Texas A&M,Away,L,76,83,-7,159,False
+2026-01-10,Oklahoma State Cowboys,3Iowa State,Away,L,71,83,-12,154,False
+2026-01-10,Old Dominion Monarchs,James Madison,Away,L,69,70,-1,139,False
+2026-01-10,Ole Miss Rebels,Missouri,Home,W,76,69,7,145,False
+2026-01-10,Omaha Mavericks,North Dakota State,Home,L,76,78,-2,154,False
+2026-01-10,Oral Roberts Golden Eagles,St. Thomas-Minnesota,Home,L,71,82,-11,153,False
+2026-01-10,Oregon State Beavers,Portland,Away,L,76,82,-6,158,False
+2026-01-10,Pacific Tigers,San Diego,Home,W,77,70,7,147,False
+2026-01-10,Penn State Nittany Lions,5Purdue,Away,L,85,93,-8,178,False
+2026-01-10,Pennsylvania Quakers,Brown,Home,W,81,73,8,154,False
+2026-01-10,Pepperdine Waves,San Francisco,Home,L,60,80,-20,140,False
+2026-01-10,Pittsburgh Panthers,Syracuse,Home,L,72,83,-11,155,False
+2026-01-10,Portland Pilots,Oregon State,Home,W,82,76,6,158,False
+2026-01-10,Portland State Vikings,Sacramento State,Home,W,96,69,27,165,False
+2026-01-10,Prairie View A&M Panthers,Mississippi Valley State,Home,W,70,69,1,139,False
+2026-01-10,Presbyterian Blue Hose,Longwood,Away,L,70,77,-7,147,False
+2026-01-10,Princeton Tigers,Yale,Home,W,76,60,16,136,False
+2026-01-10,Providence Friars,Xavier,Away,L,84,97,-13,181,False
+2026-01-10,Purdue Boilermakers,Penn State,Home,W,93,85,8,178,False
+2026-01-10,Radford Highlanders,UNC Asheville,Home,L,72,91,-19,163,False
+2026-01-10,Rhode Island Rams,Davidson,Away,W,70,45,25,115,False
+2026-01-10,SE Louisiana Lions,McNeese,Away,L,61,73,-12,134,False
+2026-01-10,SMU Mustangs,6Duke,Away,L,75,82,-7,157,False
+2026-01-10,Sacramento State Hornets,Portland State,Away,L,69,96,-27,165,False
+2026-01-10,Saint Francis Red Flash,Long Island University,Away,L,63,67,-4,130,False
+2026-01-10,Saint Louis Billikens,La Salle,Away,W,84,72,12,156,False
+2026-01-10,Saint Mary's Gaels,Washington State,Home,W,88,82,6,170,False
+2026-01-10,Sam Houston Bearkats,Liberty,Home,L,74,82,-8,156,False
+2026-01-10,Samford Bulldogs,Chattanooga,Away,L,79,88,-9,167,False
+2026-01-10,San Diego State Aztecs,Fresno State,Home,W,71,52,19,123,False
+2026-01-10,San Diego Toreros,Pacific,Away,L,70,77,-7,147,False
+2026-01-10,San Francisco Dons,Pepperdine,Away,W,80,60,20,140,False
+2026-01-10,San José State Spartans,Grand Canyon,Away,L,58,76,-18,134,False
+2026-01-10,Santa Clara Broncos,Loyola Marymount,Home,W,103,72,31,175,False
+2026-01-10,Seton Hall Pirates,Georgetown,Away,W,76,67,9,143,False
+2026-01-10,South Alabama Jaguars,Georgia Southern,Home,W,87,71,16,158,False
+2026-01-10,South Carolina Gamecocks,18Georgia,Home,L,70,75,-5,145,False
+2026-01-10,South Carolina State Bulldogs,Morgan State,Away,L,67,72,-5,139,False
+2026-01-10,South Carolina Upstate Spartans,Winthrop,Home,L,50,71,-21,121,False
+2026-01-10,South Dakota Coyotes,Denver,Home,W,82,72,10,154,False
+2026-01-10,South Florida Bulls,Tulsa,Away,W,93,78,15,171,False
+2026-01-10,Southeast Missouri State Redhawks,Morehead State,Away,L,69,71,-2,140,False
+2026-01-10,Southern Jaguars,Florida A&M,Away,L,59,67,-8,126,False
+2026-01-10,Southern Miss Golden Eagles,UL Monroe,Home,W,70,60,10,130,False
+2026-01-10,Southern Utah Thunderbirds,California Baptist,Away,L,55,58,-3,113,False
+2026-01-10,St. Bonaventure Bonnies,Fordham,Home,L,77,81,-4,158,False
+2026-01-10,St. John's Red Storm,Creighton,Away,W,90,73,17,163,False
+2026-01-10,St. Thomas-Minnesota Tommies,Oral Roberts,Away,W,82,71,11,153,False
+2026-01-10,Stanford Cardinal,23Virginia,Away,L,55,70,-15,125,False
+2026-01-10,Stephen F. Austin Lumberjacks,Houston Christian,Home,W,85,67,18,152,False
+2026-01-10,Stetson Hatters,Austin Peay,Home,L,69,81,-12,150,False
+2026-01-10,Stonehill Skyhawks,Chicago State,Home,W,85,82,3,167,True
+2026-01-10,Stony Brook Seawolves,UNC Wilmington,Home,L,71,75,-4,146,False
+2026-01-10,Syracuse Orange,Pittsburgh,Away,W,83,72,11,155,False
+2026-01-10,TCU Horned Frogs,1Arizona,Home,L,73,86,-13,159,False
+2026-01-10,Tennessee State Tigers,Eastern Illinois,Away,L,70,74,-4,144,False
+2026-01-10,Tennessee Tech Golden Eagles,Western Illinois,Away,W,59,54,5,113,False
+2026-01-10,Tennessee Volunteers,Florida,Away,L,67,91,-24,158,False
+2026-01-10,Texas A&M Aggies,Oklahoma,Home,W,83,76,7,159,False
+2026-01-10,Texas A&M-Corpus Christi Islanders,Northwestern State,Away,L,78,79,-1,157,False
+2026-01-10,Texas Longhorns,13Alabama,Away,W,92,88,4,180,False
+2026-01-10,Texas Southern Tigers,Arkansas-Pine Bluff,Home,L,66,74,-8,140,False
+2026-01-10,Texas State Bobcats,Arkansas State,Away,L,82,83,-1,165,False
+2026-01-10,Texas Tech Red Raiders,Colorado,Away,W,73,71,2,144,False
+2026-01-10,The Citadel Bulldogs,Western Carolina,Home,W,79,77,2,156,True
+2026-01-10,Towson Tigers,Northeastern,Away,W,87,78,9,165,False
+2026-01-10,Troy Trojans,Louisiana,Away,W,90,70,20,160,False
+2026-01-10,Tulane Green Wave,UTSA,Away,W,85,52,33,137,False
+2026-01-10,Tulsa Golden Hurricane,South Florida,Home,L,78,93,-15,171,False
+2026-01-10,UAlbany Great Danes,Bryant,Home,W,71,46,25,117,False
+2026-01-10,UC Davis Aggies,Cal Poly,Away,L,78,84,-6,162,False
+2026-01-10,UC Irvine Anteaters,Hawaii,Away,L,66,67,-1,133,False
+2026-01-10,UC Riverside Highlanders,UC San Diego,Home,L,66,69,-3,135,False
+2026-01-10,UC San Diego Tritons,UC Riverside,Away,W,69,66,3,135,False
+2026-01-10,UCLA Bruins,Maryland,Home,W,67,55,12,122,False
+2026-01-10,UConn Huskies,DePaul,Home,W,72,60,12,132,False
+2026-01-10,UIC Flames,Illinois State,Away,W,63,59,4,122,True
+2026-01-10,UL Monroe Warhawks,Southern Miss,Away,L,60,70,-10,130,False
+2026-01-10,UMBC Retrievers,New Hampshire,Home,W,75,74,1,149,False
+2026-01-10,UMass Lowell River Hawks,Binghamton,Away,W,73,68,5,141,False
+2026-01-10,UNC Asheville Bulldogs,Radford,Away,W,91,72,19,163,False
+2026-01-10,UNC Greensboro Spartans,East Tennessee State,Away,L,60,86,-26,146,False
+2026-01-10,UNC Wilmington Seahawks,Stony Brook,Away,W,75,71,4,146,False
+2026-01-10,UT Arlington Mavericks,Abilene Christian,Home,W,82,72,10,154,False
+2026-01-10,UT Martin Skyhawks,Southern Indiana,Away,W,73,56,17,129,False
+2026-01-10,UT Rio Grande Valley Vaqueros,East Texas A&M,Away,L,69,77,-8,146,False
+2026-01-10,UTEP Miners,Western Kentucky,Home,L,56,68,-12,124,False
+2026-01-10,UTSA Roadrunners,Tulane,Home,L,52,85,-33,137,False
+2026-01-10,Utah State Aggies,Boise State,Away,W,93,68,25,161,False
+2026-01-10,Utah Tech Trailblazers,Utah Valley,Away,L,76,92,-16,168,False
+2026-01-10,Utah Utes,9BYU,Home,L,84,89,-5,173,False
+2026-01-10,Utah Valley Wolverines,Utah Tech,Home,W,92,76,16,168,False
+2026-01-10,VCU Rams,George Mason,Away,L,80,86,-6,166,False
+2026-01-10,VMI Keydets,Furman,Away,L,48,69,-21,117,False
+2026-01-10,Valparaiso Beacons,Murray State,Away,L,79,92,-13,171,False
+2026-01-10,Vanderbilt Commodores,LSU,Home,W,84,73,11,157,False
+2026-01-10,Villanova Wildcats,Marquette,Away,W,76,73,3,149,False
+2026-01-10,Virginia Cavaliers,Stanford,Home,W,70,55,15,125,False
+2026-01-10,Virginia Tech Hokies,California,Home,W,78,75,3,153,False
+2026-01-10,Wagner Seahawks,Mercyhurst,Home,L,69,70,-1,139,False
+2026-01-10,Wake Forest Demon Deacons,17North Carolina,Away,L,84,87,-3,171,False
+2026-01-10,Washington State Cougars,Saint Mary's,Away,L,82,88,-6,170,False
+2026-01-10,Weber State Wildcats,Northern Colorado,Away,W,76,71,5,147,False
+2026-01-10,West Georgia Wolves,Jacksonville,Away,L,43,75,-32,118,False
+2026-01-10,West Virginia Mountaineers,22Kansas,Home,W,86,75,11,161,False
+2026-01-10,Western Carolina Catamounts,The Citadel,Away,L,77,79,-2,156,True
+2026-01-10,Western Illinois Leathernecks,Tennessee Tech,Home,L,54,59,-5,113,False
+2026-01-10,Western Kentucky Hilltoppers,UTEP,Away,W,68,56,12,124,False
+2026-01-10,Western Michigan Broncos,Eastern Michigan,Home,W,79,62,17,141,False
+2026-01-10,William & Mary Tribe,Drexel,Away,L,58,64,-6,122,False
+2026-01-10,Winthrop Eagles,South Carolina Upstate,Away,W,71,50,21,121,False
+2026-01-10,Wisconsin Badgers,2Michigan,Away,W,91,88,3,179,False
+2026-01-10,Wofford Terriers,Mercer,Away,L,97,109,-12,206,False
+2026-01-10,Wyoming Cowboys,Nevada,Away,L,83,92,-9,175,False
+2026-01-10,Xavier Musketeers,Providence,Home,W,97,84,13,181,False
+2026-01-10,Yale Bulldogs,Princeton,Away,L,60,76,-16,136,False
