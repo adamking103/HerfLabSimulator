@@ -116,3 +116,62 @@ Illinois Fighting Illini          45.7         58.9
      Michigan Wolverines          45.9         60.2
 [19:09:36] 
 🏁 COMPLETE in 336.0 seconds (5.6 minutes)
+[19:16:44] 
+============================================================
+[19:16:44] 🚀 ESPN SCRAPER V2.3 (DOUBLE TURBO)
+[19:16:44] ============================================================
+[19:16:44] 📅 Building schedule from 2025-11-02 to 2026-01-11...
+[19:16:44]    ⚡ Scanning 71 days of calendars in parallel...
+[19:16:49] ✅ Schedule built: Found 3326 completed games
+[19:16:49] ⚡ Downloading shot data for 3326 games...
+[19:16:58]    ✓ 100/3326 games processed... (16,685 shots)
+[19:17:06]    ✓ 200/3326 games processed... (32,759 shots)
+[19:17:14]    ✓ 300/3326 games processed... (48,436 shots)
+[19:17:21]    ✓ 400/3326 games processed... (64,799 shots)
+[19:17:28]    ✓ 500/3326 games processed... (81,114 shots)
+[19:17:36]    ✓ 600/3326 games processed... (97,349 shots)
+[19:17:42]    ✓ 700/3326 games processed... (113,198 shots)
+[19:17:50]    ✓ 800/3326 games processed... (129,482 shots)
+[19:17:57]    ✓ 900/3326 games processed... (145,585 shots)
+[19:18:04]    ✓ 1000/3326 games processed... (161,762 shots)
+[19:18:11]    ✓ 1100/3326 games processed... (177,474 shots)
+[19:18:18]    ✓ 1200/3326 games processed... (193,338 shots)
+[19:18:25]    ✓ 1300/3326 games processed... (209,367 shots)
+[19:18:32]    ✓ 1400/3326 games processed... (224,930 shots)
+[19:18:39]    ✓ 1500/3326 games processed... (240,234 shots)
+[19:18:46]    ✓ 1600/3326 games processed... (255,865 shots)
+[19:18:54]    ✓ 1700/3326 games processed... (271,527 shots)
+[19:19:01]    ✓ 1800/3326 games processed... (287,052 shots)
+[19:19:08]    ✓ 1900/3326 games processed... (302,993 shots)
+[19:19:15]    ✓ 2000/3326 games processed... (318,934 shots)
+[19:19:22]    ✓ 2100/3326 games processed... (333,991 shots)
+[19:19:29]    ✓ 2200/3326 games processed... (348,590 shots)
+[19:19:35]    ✓ 2300/3326 games processed... (363,856 shots)
+[19:19:42]    ✓ 2400/3326 games processed... (377,897 shots)
+[19:19:49]    ✓ 2500/3326 games processed... (391,973 shots)
+[19:19:56]    ✓ 2600/3326 games processed... (406,302 shots)
+[19:20:03]    ✓ 2700/3326 games processed... (420,388 shots)
+[19:20:11]    ✓ 2800/3326 games processed... (434,369 shots)
+[19:20:18]    ✓ 2900/3326 games processed... (448,685 shots)
+[19:20:24]    ✓ 3000/3326 games processed... (462,810 shots)
+[19:20:32]    ✓ 3100/3326 games processed... (476,869 shots)
+[19:20:39]    ✓ 3200/3326 games processed... (490,783 shots)
+[19:20:46]    ✓ 3300/3326 games processed... (504,621 shots)
+[19:20:48] 
+✅ Scraping complete: 508,073 shots
+[19:20:48] 🧹 Removed 1861 invalid shots (0.4%)
+[19:20:48] 
+📊 Calculating team statistics...
+[19:20:49]    ✅ Stats calculated for 719 teams
+[19:20:49] 📦 Old file backed up: C:\Users\adamc\OneDrive\Desktop\HerfLab_Deploy\cbb_style_backup_20260111_192049.csv
+[19:20:49] 💾 Saved to: C:\Users\adamc\OneDrive\Desktop\HerfLab_Deploy\cbb_style_2025_complete.csv
+[19:20:49] 
+📋 Top 5 Defensive Rim Protectors:
+[19:20:49]                play_team  opp_rim_rate  opp_rim_pct
+   South Alabama Jaguars          34.8         65.7
+    Nebraska Cornhuskers          44.3         63.4
+ Louisiana Tech Bulldogs          45.5         65.3
+Illinois Fighting Illini          45.7         58.9
+     Michigan Wolverines          45.9         60.2
+[19:20:49] 
+🏁 COMPLETE in 244.8 seconds (4.1 minutes)

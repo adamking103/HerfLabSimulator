@@ -88,8 +88,6 @@ def calculate_herf_score(row, team_name, tracker):
                 actual_margin = g['H_Score'] - g['V_Score'] if is_home else g['V_Score'] - g['H_Score']
                 if 'Closing_Spread' in g and pd.notna(g['Closing_Spread']):
                     spread = g['Closing_Spread'] # Spread is always Home Spread
-                    # If Home (-5), Actual +10 -> Cover by 15.
-                    # If Visitor, Spread -5 (Home Fav), Actual (Visitor loses by 2) -> Cover by 3.
                     cover_margin = (actual_margin - (-spread)) if is_home else (-(actual_margin) - spread)
                     covers.append(cover_margin)
             
@@ -117,23 +115,25 @@ if stats is not None:
 #   V9.2 BASELINE ENGINE (INTERNAL FOR REPORT CARD)
 # ==============================================================================
 def run_base_simulation(visitor, home, data_pack):
-    # Simplified V9.2 Logic for Comparison
     try:
         kp = data_pack['kp']
         tv = kp[kp['TeamName'] == visitor].iloc[0]
         th = kp[kp['TeamName'] == home].iloc[0]
         
-        avg_eff = kp['AdjOE'].mean(); avg_tempo = kp['AdjTempo'].mean()
-        tempo = (tv['AdjTempo'] * th['AdjTempo']) / avg_tempo
+        # Note: Stats df uses 'Off_Eff', so we map accordingly if needed, 
+        # but here we are using the 'stats' df passed from V10 which has V10 columns.
+        # We will use the V10 columns (Off_Eff, Def_Eff, Tempo) which are equivalent to AdjOE/AdjDE/AdjTempo
         
-        oe_v = (tv['AdjOE'] * th['AdjDE']) / avg_eff
-        oe_h = (th['AdjOE'] * tv['AdjDE']) / avg_eff
+        avg_eff = kp['Off_Eff'].mean(); avg_tempo = kp['Tempo'].mean()
+        tempo = (tv['Tempo'] * th['Tempo']) / avg_tempo
         
-        # Add HCA (Standard 2.6)
+        oe_v = (tv['Off_Eff'] * th['Def_Eff']) / avg_eff
+        oe_h = (th['Off_Eff'] * tv['Def_Eff']) / avg_eff
+        
         mean_v = oe_v * tempo / 100
         mean_h = (oe_h * tempo / 100) + 2.6
         
-        return mean_h - mean_v # Spread (Home Margin)
+        return mean_h - mean_v 
     except: return None
 
 # ==============================================================================
@@ -146,8 +146,7 @@ def generate_report_card(team_name, tracker_df):
     team_games = team_games.sort_values('Date', ascending=False)
     
     report = []
-    # Package data for Base Sim
-    data_pack = {'kp': stats, 'style': style} 
+    data_pack = {'kp': stats} 
     
     for _, game in team_games.iterrows():
         is_home = (game['Home'] == team_name)
@@ -156,40 +155,29 @@ def generate_report_card(team_name, tracker_df):
         v_score = game['V_Score']; h_score = game['H_Score']
         actual_home_margin = h_score - v_score 
         
-        # 1. Market Line
-        market_spread = game.get('Closing_Spread', None) # Home Spread (e.g. -5.5)
+        market_spread = game.get('Closing_Spread', None) 
         
-        # 2. V10 Projection
         try:
             res_v10 = v10_engine.run_simulation(game['Visitor'], game['Home'], stats, style, quad, eff, h_perf, r_perf)
-            v10_margin = res_v10['Predicted_Spread'] # Home Margin
+            v10_margin = res_v10['Predicted_Spread'] 
         except: v10_margin = 0
             
-        # 3. Base Projection
         base_margin = run_base_simulation(game['Visitor'], game['Home'], data_pack)
         if base_margin is None: base_margin = 0
         
-        # 4. Grading
         v10_grade = "-"; base_grade = "-"
         
         if pd.notna(market_spread):
-            # "Winning" means being closer to the actual result than the market line
             market_err = abs(actual_home_margin - (-market_spread))
             v10_err = abs(actual_home_margin - v10_margin)
             base_err = abs(actual_home_margin - base_margin)
             
-            # Did V10 find value?
             if v10_err < market_err: v10_grade = "✅" 
             else: v10_grade = "❌"
-            
-            # Did Base find value?
             if base_err < market_err: base_grade = "✅"
             else: base_grade = "❌"
 
-        # Format for Display (All Perspective of Home Team Spread)
-        # We display what the line WAS for the Home Team
         market_disp = f"{market_spread}" if pd.notna(market_spread) else "-"
-        # Convert margins to spreads (Margin +5 = Spread -5)
         v10_disp = f"{-v10_margin:.1f}"
         base_disp = f"{-base_margin:.1f}"
         result_disp = f"{'W' if (is_home and h_score > v_score) or (not is_home and v_score > h_score) else 'L'} {h_score}-{v_score}"
@@ -245,9 +233,10 @@ if mode == "🔍 Scout Team":
         with tab_overview:
             c1, c2, c3, c4 = st.columns(4)
             c1.metric("Adj. Efficiency", f"{row['AdjEM']:.1f}")
-            c2.metric("Offense", f"{row['AdjOE']:.1f}")
-            c3.metric("Defense", f"{row['AdjDE']:.1f}")
-            c4.metric("Tempo", f"{row['AdjTempo']:.1f}")
+            # --- FIXED COLUMN NAMES HERE ---
+            c2.metric("Offense", f"{row['Off_Eff']:.1f}")
+            c3.metric("Defense", f"{row['Def_Eff']:.1f}")
+            c4.metric("Tempo", f"{row['Tempo']:.1f}")
             
             st.divider()
             st.caption("Fundamentals (Herf Score Inputs)")
