@@ -1,20 +1,10 @@
 """
-01_master_game_log_scraper.py
-=============================
-THE BIBLE - Data Pipeline Step 1
-
-Purpose: Scrapes every D1 game from ESPN, filters out non-D1 opponents,
-         and properly assigns scores based on W/L result.
-
-Key Fixes from V1:
-- Removed flawed possession calculation (deferred to Step 2 with KenPom tempo)
-- Added comprehensive opponent name cleaning
-- Added date parsing for recency weighting downstream
-- Added location detection (home/away/neutral)
-- Better error handling and logging
-- Added validation checks
-
-Output: master_game_logs_2026.csv
+01_master_scraper_with_stats.py
+===============================
+THE GOLDEN SCRIPT
+1. Uses the 'Team Schedule' method to find games (Reliable).
+2. Visits EACH game's box score to get real Four Factors (Accurate).
+3. Saves the final 'master_box_scores_2026.csv'.
 """
 
 import requests
@@ -22,413 +12,285 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import time
 import re
-from datetime import datetime
 import logging
+import random
 
-# ============================================================================
-# CONFIGURATION
-# ============================================================================
+# --- CONFIGURATION ---
 SEASON_YEAR = 2026
-OUTPUT_FILE = "master_game_logs_2026.csv"
+OUTPUT_FILE = "master_box_scores_2026.csv"
 HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
-REQUEST_DELAY = 0.35  # Be respectful to ESPN's servers
 
-# Setup logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%H:%M:%S')
 logger = logging.getLogger(__name__)
 
+# --- MATH HELPER ---
+def parse_stat_val(val_str):
+    val_str = str(val_str).replace(' ', '')
+    if '-' in val_str:
+        parts = val_str.split('-')
+        try: return float(parts[0]), float(parts[1])
+        except: return 0.0, 0.0
+    try: return float(val_str), 0.0
+    except: return 0.0, 0.0
 
-# ============================================================================
-# TEAM NAME STANDARDIZATION
-# ============================================================================
-# Comprehensive mascot list for cleaning opponent names
-MASCOTS = [
-    # SEC
-    'crimson tide', 'razorbacks', 'tigers', 'gators', 'bulldogs', 'wildcats',
-    'rebels', 'commodores', 'gamecocks', 'volunteers', 'aggies', 'longhorns',
-    # Big Ten
-    'buckeyes', 'wolverines', 'spartans', 'nittany lions', 'hawkeyes', 
-    'golden gophers', 'badgers', 'boilermakers', 'hoosiers', 'fighting illini',
-    'cornhuskers', 'scarlet knights', 'terrapins', 'bruins', 'trojans',
-    'ducks', 'huskies', 'cougars',
-    # Big 12
-    'jayhawks', 'red raiders', 'horned frogs', 'bears', 'cyclones', 
-    'sooners', 'cowboys', 'mountaineers', 'bearcats', 'knights', 'cougars',
-    'sun devils', 'buffaloes', 'utes', 'cardinals',
-    # ACC
-    'blue devils', 'tar heels', 'wolfpack', 'demon deacons', 'cavaliers',
-    'hokies', 'yellow jackets', 'seminoles', 'hurricanes', 'orange',
-    'panthers', 'fighting irish', 'eagles', 'cardinal',
-    # Big East
-    'blue jays', 'hoyas', 'red storm', 'pirates', 'friars', 'musketeers',
-    'golden eagles', 'bluejays', 'villanova wildcats',
-    # Other common
-    'tritons', 'billikens', 'gaels', 'toreros', 'dons', 'waves', 'broncos',
-    'aztecs', 'rebels', 'running rebels', 'falcons', 'owls', 'mean green',
-    'miners', 'roadrunners', 'thundering herd', 'rockets', 'redhawks',
-    'bobcats', 'zips', 'flashes', 'penguins', 'flames', 'phoenix',
-    'anteaters', 'gauchos', 'matadors', 'titans', 'highlanders', 'aggies',
-    'mustangs', 'leopards', 'patriots', 'monarchs', 'dukes', 'spiders',
-    'rams', 'explorers', 'hawks', 'jaspers', 'peacocks', 'red foxes',
-    'bonnies', 'flyers', 'raiders', 'colonels', 'bison', 'leathernecks'
-]
+def calculate_four_factors(team_stats, opp_stats):
+    try:
+        fga = team_stats['fga']
+        fgm = team_stats['fgm']
+        f3pm = team_stats['3ptm']
+        fta = team_stats['fta']
+        to = team_stats['to']
+        orb = team_stats['orb']
+        opp_drb = opp_stats['drb']
 
-# Known name variations that need explicit mapping
-TEAM_ALIASES = {
-    # California schools
-    'uc san diego': 'UC San Diego',
-    'ucsd': 'UC San Diego',
-    'uc davis': 'UC Davis',
-    'uc irvine': 'UC Irvine',
-    'uc riverside': 'UC Riverside',
-    'uc santa barbara': 'UC Santa Barbara',
-    'ucsb': 'UC Santa Barbara',
-    
-    # State abbreviations
-    'usc': 'USC',
-    'ucla': 'UCLA',
-    'unlv': 'UNLV',
-    'utep': 'UTEP',
-    'utsa': 'UTSA',
-    'unc': 'North Carolina',
-    'uconn': 'UConn',
-    'smu': 'SMU',
-    'tcu': 'TCU',
-    'lsu': 'LSU',
-    'vcu': 'VCU',
-    'fiu': 'FIU',
-    'fau': 'FAU',
-    
-    # Saint vs St.
-    "saint mary's": "Saint Mary's",
-    "st. mary's": "Saint Mary's",
-    "saint john's": "St. John's",
-    "saint joseph's": "Saint Joseph's",
-    "saint louis": "Saint Louis",
-    "st. louis": "Saint Louis",
-    "saint peter's": "Saint Peter's",
-    "saint bonaventure": "St. Bonaventure",
-    
-    # Other variations
-    'miami (fl)': 'Miami',
-    'miami florida': 'Miami',
-    'miami (oh)': 'Miami (OH)',
-    'miami ohio': 'Miami (OH)',
-    "hawai'i": "Hawaii",
-    'hawaii rainbow warriors': 'Hawaii',
-    'ole miss': 'Ole Miss',
-    'mississippi': 'Ole Miss',
-    'pitt': 'Pittsburgh',
-    'nc state': 'NC State',
-    'north carolina state': 'NC State',
-}
+        poss = fga - orb + to + (0.475 * fta)
+        if poss == 0: return {}
 
+        return {
+            'Possessions': round(poss, 1),
+            'eFG%': round(((fgm + 0.5 * f3pm) / fga) * 100, 1) if fga > 0 else 0,
+            'TO%': round((to / poss) * 100, 1),
+            'OR%': round((orb / (orb + opp_drb)) * 100, 1) if (orb + opp_drb) > 0 else 0,
+            'FTR': round((fta / fga) * 100, 1) if fga > 0 else 0
+        }
+    except: return {}
 
-def clean_team_name(raw_name: str) -> str:
-    """
-    Cleans and standardizes team names for consistent matching.
-    """
-    if not isinstance(raw_name, str):
-        return ""
-    
-    name = raw_name.strip()
-    
-    # Remove ranking prefix (e.g., "#5 Duke" -> "Duke")
-    name = re.sub(r'^#\d+\s+', '', name)
-    
-    # Remove @ or vs prefix
-    name = re.sub(r'^(@|vs\.?)\s*', '', name)
-    
-    # Remove trailing asterisks or special chars
-    name = re.sub(r'[\*†‡]+$', '', name).strip()
-    
-    # Check aliases first (case-insensitive)
-    name_lower = name.lower()
-    if name_lower in TEAM_ALIASES:
-        return TEAM_ALIASES[name_lower]
-    
-    # Remove mascots (case-insensitive)
-    for mascot in MASCOTS:
-        pattern = r'\s+' + re.escape(mascot) + r'$'
-        name = re.sub(pattern, '', name, flags=re.IGNORECASE)
-    
-    return name.strip()
+# --- BOX SCORE SCRAPER ---
+def get_real_stats(game_id, session):
+    """Visits the game page to get REAL H-K column data."""
+    url = f"https://www.espn.com/mens-college-basketball/matchup?gameId={game_id}"
+    try:
+        # Polite delay
+        time.sleep(random.uniform(0.1, 0.3))
+        r = session.get(url, timeout=10)
+        soup = BeautifulSoup(r.content, 'html.parser')
+        
+        # We only need the stats table, we already have score/teams/date from schedule
+        rows = soup.find_all('tr')
+        
+        # Containers: [Away, Home]
+        stats = [{'fgm':0,'fga':0,'3ptm':0,'fta':0,'to':0,'orb':0,'drb':0}, 
+                 {'fgm':0,'fga':0,'3ptm':0,'fta':0,'to':0,'orb':0,'drb':0}]
+        
+        def get_vals(row):
+            cols = row.find_all('td')
+            if len(cols) < 3: return None, None
+            return cols[1].text.strip(), cols[2].text.strip()
 
+        found_stats = False
+        for row in rows:
+            txt = row.text.lower()
+            if 'fg' in txt and '%' not in txt:
+                v1, v2 = get_vals(row)
+                if v1:
+                    stats[0]['fgm'], stats[0]['fga'] = parse_stat_val(v1)
+                    stats[1]['fgm'], stats[1]['fga'] = parse_stat_val(v2)
+                    found_stats = True
+            elif '3pt' in txt and '%' not in txt:
+                v1, v2 = get_vals(row)
+                if v1:
+                    stats[0]['3ptm'], _ = parse_stat_val(v1)
+                    stats[1]['3ptm'], _ = parse_stat_val(v2)
+            elif 'ft' in txt and '%' not in txt:
+                v1, v2 = get_vals(row)
+                if v1:
+                    _, stats[0]['fta'] = parse_stat_val(v1)
+                    _, stats[1]['fta'] = parse_stat_val(v2)
+            elif 'turnovers' in txt:
+                v1, v2 = get_vals(row)
+                if v1:
+                    stats[0]['to'], _ = parse_stat_val(v1)
+                    stats[1]['to'], _ = parse_stat_val(v2)
+            elif 'offensive rebounds' in txt:
+                v1, v2 = get_vals(row)
+                if v1:
+                    stats[0]['orb'], _ = parse_stat_val(v1)
+                    stats[1]['orb'], _ = parse_stat_val(v2)
+            elif 'defensive rebounds' in txt:
+                v1, v2 = get_vals(row)
+                if v1:
+                    stats[0]['drb'], _ = parse_stat_val(v1)
+                    stats[1]['drb'], _ = parse_stat_val(v2)
+        
+        if not found_stats: return None, None
+        
+        # Calculate Factors
+        away_factors = calculate_four_factors(stats[0], stats[1])
+        home_factors = calculate_four_factors(stats[1], stats[0])
+        
+        return away_factors, home_factors
 
-def get_master_team_list() -> dict:
-    """
-    Fetches the full list of D1 teams and their ESPN IDs.
-    Returns dict: {team_name: espn_id}
-    """
+    except: return None, None
+
+# --- MAIN SCHEDULE LOOP ---
+def get_master_team_list():
     url = "http://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams?limit=400"
     try:
-        response = requests.get(url, timeout=15)
-        response.raise_for_status()
-        data = response.json()
-        teams = data['sports'][0]['leagues'][0]['teams']
-        
-        team_dict = {}
-        for t in teams:
-            name = t['team']['displayName']
-            tid = t['team']['id']
-            team_dict[name] = tid
-            
-        logger.info(f"Loaded {len(team_dict)} D1 teams from ESPN API")
-        return team_dict
-        
-    except Exception as e:
-        logger.error(f"Error fetching team list: {e}")
-        return {}
+        resp = requests.get(url, timeout=15)
+        data = resp.json()
+        teams = {}
+        for t in data['sports'][0]['leagues'][0]['teams']:
+            teams[t['team']['displayName']] = t['team']['id']
+        return teams
+    except: return {}
 
-
-def parse_location(opp_cell_text: str, opp_name: str) -> str:
-    """
-    Determines game location from the opponent cell text.
-    Returns: 'Home', 'Away', or 'Neutral'
-    """
-    text = opp_cell_text.strip()
-    
-    if text.startswith('@'):
-        return 'Away'
-    elif text.startswith('vs') and 'neutral' in text.lower():
-        return 'Neutral'
-    elif text.startswith('vs'):
-        return 'Home'
-    elif '@' in text:
-        return 'Away'
-    else:
-        # Default assumption: if no indicator, likely home
-        return 'Home'
-
-
-def parse_date(date_text: str) -> str:
-    """
-    Parses date text from ESPN schedule into standardized format.
-    """
+def scrape_team_schedule(team_name, tid, session):
+    url = f"https://www.espn.com/mens-college-basketball/team/schedule/_/id/{tid}/season/{SEASON_YEAR}"
     try:
-        # ESPN format is typically "Mon, Nov 4" or "Nov 4"
-        date_text = date_text.strip()
-        
-        # Remove day of week if present
-        if ',' in date_text:
-            date_text = date_text.split(',')[1].strip()
-        
-        # Parse and standardize
-        for fmt in ['%b %d', '%B %d']:
-            try:
-                parsed = datetime.strptime(date_text, fmt)
-                # Assign year based on month (Nov-Dec = current year, Jan-Apr = next year)
-                if parsed.month >= 9:
-                    parsed = parsed.replace(year=SEASON_YEAR - 1)
-                else:
-                    parsed = parsed.replace(year=SEASON_YEAR)
-                return parsed.strftime('%Y-%m-%d')
-            except ValueError:
-                continue
-                
-        return ""
-    except:
-        return ""
-
-
-def scrape_team_schedule(team_name: str, espn_id: str, session: requests.Session) -> list:
-    """
-    Scrapes a team's schedule from ESPN and returns game data.
-    Only includes games against D1 opponents.
-    """
-    url = f"https://www.espn.com/mens-college-basketball/team/schedule/_/id/{espn_id}/season/{SEASON_YEAR}"
-    
-    try:
-        response = session.get(url, timeout=15)
-        response.raise_for_status()
-        soup = BeautifulSoup(response.content, 'html.parser')
-        
-        games = []
+        r = session.get(url, timeout=10)
+        soup = BeautifulSoup(r.content, 'html.parser')
         rows = soup.find_all('tr', class_='Table__TR')
+        games = []
         
         for row in rows:
             cells = row.find_all('td')
-            if len(cells) < 3:
-                continue
+            if len(cells) < 3: continue
             
-            # --- NON-D1 FILTER ---
-            # ESPN links D1 teams to their profiles. No <a> tag = non-D1 opponent.
-            opp_cell = cells[1]
-            if not opp_cell.find('a'):
-                continue
+            # Check for Link (Game ID)
+            result_cell = cells[2]
+            link_tag = result_cell.find('a', href=True)
+            if not link_tag: continue
             
-            # --- PARSE OPPONENT ---
-            opp_raw = opp_cell.get_text(strip=True)
-            opp_clean = clean_team_name(opp_raw)
+            game_url = link_tag['href']
+            # Extract ID
+            match_id = re.search(r'gameId[=/]?(\d+)', game_url)
+            if not match_id: continue
+            game_id = match_id.group(1)
             
-            if not opp_clean:
-                continue
+            # Basic Info
+            date_str = cells[0].get_text(strip=True)
+            opp_text = cells[1].get_text(strip=True)
+            opp_name = re.sub(r'^\d+\s*', '', opp_text).replace('@', '').replace('vs', '').strip()
             
-            # --- PARSE LOCATION ---
-            location = parse_location(opp_raw, opp_clean)
+            # Parse Score
+            result_text = result_cell.get_text(strip=True)
+            match_score = re.search(r'([WL])\s*(\d+)-(\d+)', result_text)
+            if not match_score: continue
             
-            # --- PARSE DATE ---
-            date_str = parse_date(cells[0].get_text(strip=True))
+            res = match_score.group(1)
+            s1 = int(match_score.group(2))
+            s2 = int(match_score.group(3))
             
-            # --- PARSE RESULT & SCORES ---
-            result_text = cells[2].get_text(strip=True)
-            
-            # Match patterns like "W 85-72", "L 68-75", "W 102-98 OT"
-            score_match = re.search(r'([WL])\s*(\d+)-(\d+)', result_text)
-            
-            if not score_match:
-                # Game hasn't been played yet or cancelled
-                continue
-            
-            result_letter = score_match.group(1)
-            score_a = int(score_match.group(2))
-            score_b = int(score_match.group(3))
-            
-            # --- SCORE ASSIGNMENT FIX ---
-            # ESPN shows YOUR score first in wins, opponent's first in losses
-            # Actually, ESPN always shows winner-loser format
-            # So we use W/L to determine which is which
-            if result_letter == 'W':
-                tm_score = max(score_a, score_b)
-                opp_score = min(score_a, score_b)
+            if res == 'W':
+                tm_score, opp_score = max(s1, s2), min(s1, s2)
             else:
-                tm_score = min(score_a, score_b)
-                opp_score = max(score_a, score_b)
+                tm_score, opp_score = min(s1, s2), max(s1, s2)
+
+            # --- THE MAGIC: GET REAL STATS NOW ---
+            # We skip this step if we want speed, but you want DATA.
+            # We call the box scraper helper.
+            # But wait: Box scraper returns [Away, Home]. 
+            # We need to know if 'team_name' was Away or Home.
+            # Schedule page usually says "@ Opponent" (Away) or "vs Opponent" (Home)
             
-            # Check for overtime
-            is_ot = 'OT' in result_text.upper()
+            is_away = '@' in cells[1].get_text()
+            
+            # We can lazily fetch the stats. 
+            # To avoid scraping the same game twice (once for Team A, once for Team B),
+            # we could cache it. But for simplicity, we'll just fetch.
+            
+            # Optimization: ONLY fetch if we don't have it? 
+            # Let's just return the metadata and fetch stats in the main loop to handle duplicates.
             
             games.append({
+                'GameID': game_id,
                 'Date': date_str,
                 'Team': team_name,
-                'Opponent': opp_clean,
-                'Location': location,
-                'Result': result_letter,
+                'Opponent': opp_name,
+                'Location': 'A' if is_away else 'H',
                 'TeamScore': tm_score,
-                'OpponentScore': opp_score,
-                'Margin': tm_score - opp_score,
-                'TotalPoints': tm_score + opp_score,
-                'IsOT': is_ot
+                'OpponentScore': opp_score
             })
-        
+            
         return games
-        
-    except requests.RequestException as e:
-        logger.warning(f"Request error for {team_name}: {e}")
-        return []
-    except Exception as e:
-        logger.warning(f"Parse error for {team_name}: {e}")
-        return []
-
-
-def validate_data(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Validates and cleans the scraped data.
-    """
-    initial_count = len(df)
-    
-    # Remove any rows with missing critical fields
-    df = df.dropna(subset=['Team', 'Opponent', 'TeamScore', 'OpponentScore'])
-    
-    # Remove impossible scores
-    df = df[(df['TeamScore'] >= 0) & (df['OpponentScore'] >= 0)]
-    df = df[(df['TeamScore'] <= 200) & (df['OpponentScore'] <= 200)]
-    
-    # Remove games where both scores are 0 (cancelled/forfeit)
-    df = df[~((df['TeamScore'] == 0) & (df['OpponentScore'] == 0))]
-    
-    # Verify W/L matches score differential
-    df['ScoreCheck'] = df.apply(
-        lambda r: (r['Result'] == 'W' and r['TeamScore'] > r['OpponentScore']) or
-                  (r['Result'] == 'L' and r['TeamScore'] < r['OpponentScore']),
-        axis=1
-    )
-    
-    invalid_count = (~df['ScoreCheck']).sum()
-    if invalid_count > 0:
-        logger.warning(f"Found {invalid_count} games with W/L mismatch - fixing...")
-        # Fix the result based on actual scores
-        df.loc[df['TeamScore'] > df['OpponentScore'], 'Result'] = 'W'
-        df.loc[df['TeamScore'] < df['OpponentScore'], 'Result'] = 'L'
-    
-    df = df.drop(columns=['ScoreCheck'])
-    
-    final_count = len(df)
-    if initial_count != final_count:
-        logger.info(f"Validation removed {initial_count - final_count} invalid rows")
-    
-    return df
-
+    except: return []
 
 def main():
-    """Main execution function."""
-    logger.info("=" * 60)
-    logger.info("THE BIBLE - Step 1: Master Game Log Scraper")
-    logger.info("=" * 60)
+    logger.info("🚀 Starting 01_master_scraper_with_stats (The Fix)...")
     
-    # Get team list
-    teams = get_master_team_list()
-    if not teams:
-        logger.error("Failed to load team list. Exiting.")
-        return
-    
-    # Setup session
     session = requests.Session()
     session.headers.update(HEADERS)
     
-    all_games = []
-    errors = []
+    teams = get_master_team_list()
+    logger.info(f"📋 Found {len(teams)} teams. Scanning schedules...")
     
-    for i, (name, tid) in enumerate(teams.items(), 1):
-        logger.info(f"[{i}/{len(teams)}] Scraping: {name}")
+    # 1. Get List of ALL Games (Metadata Only)
+    all_game_meta = []
+    processed_games = set() # Track GameIDs to avoid double-scraping
+    
+    count = 0
+    for name, tid in teams.items():
+        count += 1
+        if count % 50 == 0: logger.info(f"Scanning schedules: {count}/{len(teams)} teams...")
         
-        games = scrape_team_schedule(name, tid, session)
+        team_games = scrape_team_schedule(name, tid, session)
+        for g in team_games:
+            # We only want to process each GameID once to save time
+            # But we need records for BOTH teams in the final file.
+            # So we will store unique GameIDs to scrape, then generate both rows.
+            if g['GameID'] not in processed_games:
+                processed_games.add(g['GameID'])
+                all_game_meta.append(g)
         
-        if games:
-            all_games.extend(games)
-            logger.info(f"    -> Found {len(games)} D1 games")
-        else:
-            errors.append(name)
-        
-        time.sleep(REQUEST_DELAY)
-    
-    if not all_games:
-        logger.error("No games scraped. Check ESPN connectivity.")
-        return
-    
-    # Convert to DataFrame
-    df = pd.DataFrame(all_games)
-    
-    # Validate
-    df = validate_data(df)
-    
-    # Sort by date
-    df = df.sort_values(['Date', 'Team']).reset_index(drop=True)
-    
-    # Save
-    df.to_csv(OUTPUT_FILE, index=False)
-    
-    # Summary
-    logger.info("=" * 60)
-    logger.info("SCRAPE COMPLETE")
-    logger.info(f"Total games: {len(df)}")
-    logger.info(f"Unique teams: {df['Team'].nunique()}")
-    logger.info(f"Date range: {df['Date'].min()} to {df['Date'].max()}")
-    logger.info(f"Output file: {OUTPUT_FILE}")
-    
-    if errors:
-        logger.warning(f"Teams with errors ({len(errors)}): {errors[:10]}...")
-    
-    # Quick sanity checks
-    logger.info("\nSanity Checks:")
-    logger.info(f"  Avg points per game: {df['TotalPoints'].mean():.1f}")
-    logger.info(f"  Home games: {(df['Location'] == 'Home').sum()}")
-    logger.info(f"  Away games: {(df['Location'] == 'Away').sum()}")
-    logger.info(f"  OT games: {df['IsOT'].sum()}")
+        # Polite delay
+        time.sleep(0.1)
 
+    logger.info(f"✅ Found {len(processed_games)} unique games. Now fetching stats...")
+    
+    # 2. Fetch Stats for Unique Games
+    final_results = []
+    
+    for i, g in enumerate(all_game_meta):
+        if i % 20 == 0: 
+            logger.info(f"[{i+1}/{len(all_game_meta)}] Scraping box score: {g['Team']} vs {g['Opponent']}")
+            # Autosave
+            if final_results:
+                pd.DataFrame(final_results).to_csv(OUTPUT_FILE, index=False)
+        
+        stats_away, stats_home = get_real_stats(g['GameID'], session)
+        
+        if stats_away and stats_home:
+            # We need to map these back to the perspective of the teams.
+            # The 'g' record tells us who 'Team' is and if they were Away/Home.
+            
+            # If g['Location'] == 'A', then g['Team'] is Away.
+            # So g['Team'] gets stats_away.
+            
+            # We create TWO rows for the final file: one for Team, one for Opponent.
+            
+            # Row 1: The 'Team' from our meta list
+            row1 = g.copy()
+            # If Team was Away
+            if g['Location'] == 'A':
+                my_s = stats_away
+                opp_s = stats_home
+            else: # Team was Home
+                my_s = stats_home
+                opp_s = stats_away
+                
+            row1.update(my_s) # Add Poss, eFG, etc.
+            final_results.append(row1)
+            
+            # Row 2: The 'Opponent'
+            row2 = {
+                'GameID': g['GameID'],
+                'Date': g['Date'],
+                'Team': g['Opponent'],
+                'Opponent': g['Team'],
+                'Location': 'H' if g['Location'] == 'A' else 'A',
+                'TeamScore': g['OpponentScore'],
+                'OpponentScore': g['TeamScore']
+            }
+            row2.update(opp_s)
+            final_results.append(row2)
+            
+    # Final Save
+    if final_results:
+        df = pd.DataFrame(final_results)
+        df.to_csv(OUTPUT_FILE, index=False)
+        logger.info(f"✅ DONE! Saved {len(df)} rows with REAL STATS to {OUTPUT_FILE}")
+    else:
+        logger.error("❌ No stats scraped.")
 
 if __name__ == "__main__":
     main()

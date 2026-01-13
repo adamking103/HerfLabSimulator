@@ -1,411 +1,238 @@
 """
-06_espn_box_scraper_ROBUST.py
-=========================================
-THE BIBLE - PHASE 2: BOX SCORE ENGINE (ROBUST VERSION)
-=========================================
-FIXES:
-  - Uses ESPN Scoreboard API instead of HTML regex scraping
-  - Only processes completed games (has final score)
-  - Better error handling and diagnostics
-  - Shows you which teams/games are being processed
+06_espn_scraper.py
+==================
+THE BIBLE - Step 6: ESPN Box Score Scraper (Team Comparison Method)
+Scrapes Scores from the header and Four Factors from the 'Team Stats' comparison table.
 """
 
-import requests
 import pandas as pd
+import requests
+from bs4 import BeautifulSoup
 import time
-import os
+import random
 import logging
-from datetime import datetime, timedelta
+import re
 
-# ==============================================================================
-# CONFIGURATION
-# ==============================================================================
-SEASON_YEAR = 2026
+# --- CONFIGURATION ---
+INPUT_FILE = "master_game_logs_2026.csv"
 OUTPUT_FILE = "master_box_scores_2026.csv"
-HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
-REQUEST_DELAY = 0.15
 
-# Logger Setup
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
-logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%H:%M:%S')
+logger = logging.getLogger()
 
-# ==============================================================================
-# IMPROVED FUNCTIONS
-# ==============================================================================
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+}
 
-def get_d1_teams():
-    """Fetches dictionary of {TeamName: ESPN_ID} for all D1 schools."""
-    url = "http://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams?limit=400"
+def extract_game_id(url):
+    """Finds the digits in an ESPN URL."""
+    if pd.isna(url): return None
+    match = re.search(r'gameId[=/]?(\d+)', str(url))
+    if match: return match.group(1)
+    match = re.search(r'/(\d+)', str(url))
+    return match.group(1) if match else None
+
+def parse_stat_val(val_str):
+    """Parses '28-57' into (28, 57) or '12' into (12, 0)."""
+    val_str = str(val_str).replace(' ', '')
+    if '-' in val_str:
+        parts = val_str.split('-')
+        return float(parts[0]), float(parts[1])
     try:
-        resp = requests.get(url, headers=HEADERS, timeout=10)
-        resp.raise_for_status()
-        teams = resp.json()['sports'][0]['leagues'][0]['teams']
-        team_dict = {t['team']['displayName']: t['team']['id'] for t in teams}
-        logger.info(f"✅ Loaded {len(team_dict)} D1 teams")
-        return team_dict
-    except Exception as e:
-        logger.error(f"❌ Failed to fetch team list: {e}")
-        return {}
-
-def get_completed_games_for_team(team_id, season=SEASON_YEAR):
-    """
-    Uses ESPN's official API to get COMPLETED games for a team.
-    This is much more reliable than regex scraping HTML.
-    """
-    # ESPN Team Schedule API
-    url = f"http://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams/{team_id}/schedule?season={season}"
-    
-    try:
-        resp = requests.get(url, headers=HEADERS, timeout=10)
-        if resp.status_code != 200:
-            return set()
-        
-        data = resp.json()
-        
-        if 'events' not in data:
-            return set()
-        
-        completed_game_ids = set()
-        
-        for event in data['events']:
-            # Check if game is completed
-            if 'competitions' not in event:
-                continue
-            
-            comp = event['competitions'][0]
-            
-            # Must have a status indicating completion
-            if 'status' in comp and 'type' in comp['status']:
-                status_type = comp['status']['type']['name']
-                
-                # Only include completed games
-                if status_type in ['STATUS_FINAL', 'Final']:
-                    game_id = event['id']
-                    completed_game_ids.add(game_id)
-        
-        return completed_game_ids
-        
-    except Exception as e:
-        logger.warning(f"⚠️ Could not fetch schedule for team {team_id}: {e}")
-        return set()
-
-def fetch_game_summary(game_id):
-    """Hits the ESPN Summary API to get box score stats."""
-    url = f"http://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/summary?event={game_id}"
-    try:
-        resp = requests.get(url, headers=HEADERS, timeout=10)
-        if resp.status_code == 200:
-            return resp.json()
-    except Exception as e:
-        logger.debug(f"Failed to fetch game {game_id}: {e}")
-    return None
-
-def parse_stat_group(statistics):
-    """Parses the 'statistics' list from ESPN API."""
-    stats = {}
-    for item in statistics:
-        label = item['name']
-        val = item['displayValue']
-        
-        # --- Handle "Made-Att" format (e.g. "25-60") ---
-        if '-' in val:
-            parts = val.split('-')
-            try:
-                made = int(parts[0])
-                att = int(parts[1])
-                
-                if label in ['fieldGoals', 'fieldGoalsMade']: 
-                    stats['FGM'], stats['FGA'] = made, att
-                elif label in ['threePointFieldGoals', 'threePointFieldGoalsMade']:
-                    stats['3PM'], stats['3PA'] = made, att
-                elif label in ['freeThrows', 'freeThrowsMade']:
-                    stats['FTM'], stats['FTA'] = made, att
-            except:
-                continue
-        else:
-            # --- Handle direct numbers ---
-            try:
-                num = int(val)
-                if label in ['totalRebounds', 'rebounds']: stats['REB'] = num
-                elif label in ['offensiveRebounds']: stats['OR'] = num
-                elif label in ['defensiveRebounds']: stats['DR'] = num
-                elif label in ['turnovers']: stats['TO'] = num
-                elif label in ['fouls']: stats['PF'] = num
-            except:
-                continue
-    return stats
+        return float(val_str), 0.0
+    except:
+        return 0.0, 0.0
 
 def calculate_four_factors(team_stats, opp_stats):
-    """Calculates eFG%, TO%, OR%, FTR."""
-    # Validation
-    if 'FGA' not in team_stats or team_stats['FGA'] == 0:
+    """Calculates efficiency metrics."""
+    try:
+        # Unpack
+        fga = team_stats['fga']
+        fgm = team_stats['fgm']
+        f3pm = team_stats['3ptm']
+        fta = team_stats['fta']
+        to = team_stats['to']
+        orb = team_stats['orb']
+        opp_drb = opp_stats['drb'] # Needed for OR%
+
+        # 1. Possessions
+        # Formula: FGA - ORB + TO + (0.475 * FTA)
+        poss = fga - orb + to + (0.475 * fta)
+        if poss == 0: return {}
+
+        # 2. eFG%
+        efg = (fgm + (0.5 * f3pm)) / fga if fga > 0 else 0
+
+        # 3. TO%
+        to_pct = to / poss
+
+        # 4. OR%
+        or_pct = orb / (orb + opp_drb) if (orb + opp_drb) > 0 else 0
+
+        # 5. FTR
+        ftr = fta / fga if fga > 0 else 0
+
+        return {
+            'Possessions': round(poss, 1),
+            'eFG%': round(efg * 100, 1),
+            'TO%': round(to_pct * 100, 1),
+            'OR%': round(or_pct * 100, 1),
+            'FTR': round(ftr * 100, 1)
+        }
+    except Exception as e:
+        return {}
+
+def scrape_espn_game(game_id):
+    url = f"https://www.espn.com/mens-college-basketball/matchup?gameId={game_id}"
+    try:
+        time.sleep(random.uniform(0.5, 1.5))
+        response = requests.get(url, headers=HEADERS, timeout=10)
+        soup = BeautifulSoup(response.content, 'html.parser')
+
+        # --- 1. GET SCORES (From Header) ---
+        # ESPN Matchup pages have the score in the "Gamestrip"
+        scores = soup.find_all('div', class_='Gamestrip__Score')
+        if not scores or len(scores) < 2:
+            # Fallback: look for generic .score class
+            scores = soup.find_all(class_='score')
+        
+        if len(scores) < 2:
+            return None # Can't find scores, skip
+            
+        score_away = int(scores[0].text.strip())
+        score_home = int(scores[1].text.strip())
+
+        # --- 2. GET TEAM STATS TABLE ---
+        # We look for the table row-by-row based on text keywords
+        # This is more robust than looking for specific classes that change
+        
+        rows = soup.find_all('tr')
+        
+        # Init raw stats containers
+        # index 0 = Away, index 1 = Home (standard ESPN order)
+        s_away = {'fgm':0, 'fga':0, '3ptm':0, 'fta':0, 'to':0, 'orb':0, 'drb':0}
+        s_home = {'fgm':0, 'fga':0, '3ptm':0, 'fta':0, 'to':0, 'orb':0, 'drb':0}
+
+        def get_vals(row):
+            cols = row.find_all('td')
+            # Col 0 = Label, Col 1 = Away, Col 2 = Home
+            if len(cols) < 3: return None, None
+            return cols[1].text.strip(), cols[2].text.strip()
+
+        for row in rows:
+            txt = row.text.lower()
+            
+            # Field Goals (FG)
+            if 'fg' in txt and '%' not in txt:
+                v1, v2 = get_vals(row)
+                s_away['fgm'], s_away['fga'] = parse_stat_val(v1)
+                s_home['fgm'], s_home['fga'] = parse_stat_val(v2)
+                
+            # 3 Pointers (3PT)
+            elif '3pt' in txt and '%' not in txt:
+                v1, v2 = get_vals(row)
+                s_away['3ptm'], _ = parse_stat_val(v1)
+                s_home['3ptm'], _ = parse_stat_val(v2)
+
+            # Free Throws (FT)
+            elif 'ft' in txt and '%' not in txt:
+                v1, v2 = get_vals(row)
+                _, s_away['fta'] = parse_stat_val(v1)
+                _, s_home['fta'] = parse_stat_val(v2)
+
+            # Turnovers
+            elif 'turnovers' in txt and 'points' not in txt:
+                v1, v2 = get_vals(row)
+                s_away['to'], _ = parse_stat_val(v1)
+                s_home['to'], _ = parse_stat_val(v2)
+            
+            # Offensive Rebounds
+            elif 'offensive rebounds' in txt:
+                v1, v2 = get_vals(row)
+                s_away['orb'], _ = parse_stat_val(v1)
+                s_home['orb'], _ = parse_stat_val(v2)
+
+            # Defensive Rebounds
+            elif 'defensive rebounds' in txt:
+                v1, v2 = get_vals(row)
+                s_away['drb'], _ = parse_stat_val(v1)
+                s_home['drb'], _ = parse_stat_val(v2)
+
+        # --- 3. CALCULATE FACTORS ---
+        final_away = calculate_four_factors(s_away, s_home)
+        final_home = calculate_four_factors(s_home, s_away)
+        
+        # Add Scores
+        final_away['Score'] = score_away
+        final_home['Score'] = score_home
+        
+        return [final_away, final_home]
+
+    except Exception as e:
         return None
 
-    fga = team_stats.get('FGA', 0)
-    or_val = team_stats.get('OR', 0)
-    to_val = team_stats.get('TO', 0)
-    fta = team_stats.get('FTA', 0)
-    
-    poss = fga - or_val + to_val + (0.475 * fta)
-    if poss <= 0: poss = 1.0
-    
-    fgm = team_stats.get('FGM', 0)
-    pm3 = team_stats.get('3PM', 0)
-    efg = (fgm + 0.5 * pm3) / fga
-    
-    to_rate = to_val / poss
-    
-    opp_dr = opp_stats.get('DR', 0)
-    or_chances = or_val + opp_dr
-    or_rate = or_val / or_chances if or_chances > 0 else 0.0
-    
-    ft_rate = fta / fga
-    
-    return {
-        'Possessions': round(poss, 1),
-        'eFG%': round(efg * 100, 1),
-        'TO%': round(to_rate * 100, 1),
-        'OR%': round(or_rate * 100, 1),
-        'FTR': round(ft_rate * 100, 1),
-        'Raw_OR': or_val,
-        'Raw_TO': to_val,
-        'Raw_FT': fta
-    }
-
-# ==============================================================================
-# DIAGNOSTIC FUNCTION
-# ==============================================================================
-
-def test_single_game(game_id):
-    """
-    Test function to see what's happening with a specific game.
-    Use this to debug why games are failing.
-    """
-    logger.info(f"\n{'='*70}")
-    logger.info(f"🔍 TESTING GAME ID: {game_id}")
-    logger.info(f"{'='*70}")
-    
-    data = fetch_game_summary(game_id)
-    
-    if not data:
-        logger.error("❌ No data returned from API")
-        return
-    
-    # Check what we got back
-    logger.info(f"✅ Data retrieved successfully")
-    
-    # Check for boxscore
-    if 'boxscore' not in data:
-        logger.error("❌ No 'boxscore' key in response")
-        logger.info(f"Available keys: {list(data.keys())}")
-        return
-    
-    if 'teams' not in data['boxscore']:
-        logger.error("❌ No 'teams' in boxscore")
-        logger.info(f"Boxscore keys: {list(data['boxscore'].keys())}")
-        return
-    
-    # Try to parse
-    try:
-        team1_info = data['boxscore']['teams'][0]
-        team2_info = data['boxscore']['teams'][1]
-        
-        t1_name = team1_info['team']['displayName']
-        t2_name = team2_info['team']['displayName']
-        
-        logger.info(f"🏀 {t1_name} vs {t2_name}")
-        
-        # Check for statistics
-        if 'statistics' not in team1_info:
-            logger.error("❌ No statistics for team 1")
-            return
-        
-        t1_stats = parse_stat_group(team1_info['statistics'])
-        t2_stats = parse_stat_group(team2_info['statistics'])
-        
-        logger.info(f"📊 Team 1 stats: {t1_stats}")
-        logger.info(f"📊 Team 2 stats: {t2_stats}")
-        
-        # Try four factors
-        t1_factors = calculate_four_factors(t1_stats, t2_stats)
-        t2_factors = calculate_four_factors(t2_stats, t1_stats)
-        
-        if t1_factors and t2_factors:
-            logger.info("✅ Four factors calculated successfully!")
-            logger.info(f"   {t1_name}: {t1_factors}")
-            logger.info(f"   {t2_name}: {t2_factors}")
-        else:
-            logger.error("❌ Four factors calculation failed")
-            
-    except Exception as e:
-        logger.error(f"❌ Error parsing game: {e}")
-        import traceback
-        traceback.print_exc()
-
-# ==============================================================================
-# MAIN PIPELINE
-# ==============================================================================
-
 def main():
-    logger.info("\n" + "="*70)
-    logger.info("🏀 ESPN BOX SCORE SCRAPER - ROBUST VERSION")
-    logger.info("="*70)
+    logger.info("🚀 Starting ESPN Team Stats Scraper...")
     
-    # 1. Load Existing Data
-    processed_ids = set()
-    if os.path.exists(OUTPUT_FILE):
-        try:
-            existing = pd.read_csv(OUTPUT_FILE)
-            if 'GameID' in existing.columns:
-                processed_ids = set(existing['GameID'].astype(str))
-                logger.info(f"📚 Loaded {len(processed_ids)} existing games from CSV")
-        except Exception as e:
-            logger.warning(f"⚠️ Could not read existing file: {e}")
+    try:
+        df = pd.read_csv(INPUT_FILE)
+    except FileNotFoundError:
+        logger.error(f"❌ {INPUT_FILE} not found!")
+        return
 
-    # 2. Get All Teams
-    teams = get_d1_teams()
-    if not teams:
-        logger.error("❌ Failed to load teams. Exiting.")
-        return
+    results = []
+    total = len(df)
     
-    # 3. Find Completed Games
-    all_completed_games = set()
-    logger.info("\n🔍 Scanning for COMPLETED games...")
-    
-    for i, (name, tid) in enumerate(teams.items()):
-        if i % 20 == 0:
-            logger.info(f"   Scanning team {i+1}/{len(teams)}: {name}")
+    for i, row in df.iterrows():
+        team = row['Team']
+        opp = row['Opponent']
+        url = row.get('Link', row.get('Url', ''))
         
-        completed_games = get_completed_games_for_team(tid)
-        all_completed_games.update(completed_games)
-        time.sleep(REQUEST_DELAY)
-    
-    logger.info(f"\n✅ Found {len(all_completed_games)} total completed games")
-    
-    # Remove already processed
-    games_to_scrape = list(all_completed_games - processed_ids)
-    logger.info(f"📋 New games to scrape: {len(games_to_scrape)}")
-    
-    if not games_to_scrape:
-        logger.info("✅ Database is up to date!")
-        return
-    
-    # 4. Scrape New Games
-    new_rows = []
-    successful_games = 0
-    failed_games = 0
-    
-    logger.info(f"\n{'='*70}")
-    logger.info(f"🚀 SCRAPING {len(games_to_scrape)} NEW GAMES")
-    logger.info(f"{'='*70}\n")
-    
-    for i, gid in enumerate(games_to_scrape):
-        # Progress update
-        if i % 10 == 0:
-            pct = (i / len(games_to_scrape)) * 100
-            logger.info(f"⛏️  Progress: {i}/{len(games_to_scrape)} ({pct:.1f}%) | Success: {successful_games} | Failed: {failed_games}")
+        game_id = extract_game_id(url)
+        if not game_id: continue
+            
+        logger.info(f"[{i+1}/{total}] Scraping {team} vs {opp} (ID: {game_id})")
         
-        # Fetch game data
-        data = fetch_game_summary(gid)
+        data = scrape_espn_game(game_id)
         
-        if not data or 'boxscore' not in data or 'teams' not in data['boxscore']:
-            failed_games += 1
-            continue
+        if data:
+            # Assume index 0 is Team (Away) and 1 is Opp (Home)
+            # This is a simplification. Ideally we fuzzy match names.
+            # But usually ESPN links match the schedule structure.
+            
+            # Simple fuzzy check:
+            # If the user's schedule says "at Duke", Duke is Home (index 1).
+            is_home_game = False
+            if 'Location' in row and (row['Location'] == 'H' or row['Location'] == 'Home'):
+                is_home_game = True
+            
+            if is_home_game:
+                my_stats = data[1] # Home
+                opp_stats = data[0] # Away
+            else:
+                my_stats = data[0] # Away
+                opp_stats = data[1] # Home
+
+            record = {
+                'Date': row['Date'],
+                'Team': team,
+                'Opponent': opp,
+                'Location': row.get('Location', 'N'),
+                'TeamScore': my_stats.get('Score', 0),
+                'OpponentScore': opp_stats.get('Score', 0),
+                'Possessions': my_stats.get('Possessions', 0),
+                'eFG%': my_stats.get('eFG%', 0),
+                'TO%': my_stats.get('TO%', 0),
+                'OR%': my_stats.get('OR%', 0),
+                'FTR': my_stats.get('FTR', 0)
+            }
+            results.append(record)
         
-        try:
-            # Parse teams
-            team1_info = data['boxscore']['teams'][0]
-            team2_info = data['boxscore']['teams'][1]
-            
-            t1_name = team1_info['team']['displayName']
-            t2_name = team2_info['team']['displayName']
-            
-            # Parse stats
-            t1_stats = parse_stat_group(team1_info['statistics'])
-            t2_stats = parse_stat_group(team2_info['statistics'])
-            
-            if not t1_stats or not t2_stats:
-                failed_games += 1
-                continue
-            
-            # Calculate four factors
-            t1_factors = calculate_four_factors(t1_stats, t2_stats)
-            t2_factors = calculate_four_factors(t2_stats, t1_stats)
-            
-            if not t1_factors or not t2_factors:
-                failed_games += 1
-                continue
-            
-            # Get game info
-            date_str = data['header']['competitions'][0]['date'][:10]
-            neutral_site = data['header']['competitions'][0]['neutralSite']
-            
-            # Determine location
-            comps = data['header']['competitions'][0]['competitors']
-            home_id = next((c['id'] for c in comps if c['homeAway'] == 'home'), None)
-            
-            t1_loc = "Home" if team1_info['team']['id'] == home_id else "Away"
-            t2_loc = "Away" if t1_loc == "Home" else "Home"
-            
-            if neutral_site:
-                t1_loc = "Neutral"
-                t2_loc = "Neutral"
-            
-            # Add rows
-            new_rows.append({
-                'GameID': gid, 'Date': date_str, 
-                'Team': t1_name, 'Opponent': t2_name,
-                'Location': t1_loc, **t1_factors
-            })
-            new_rows.append({
-                'GameID': gid, 'Date': date_str,
-                'Team': t2_name, 'Opponent': t1_name,
-                'Location': t2_loc, **t2_factors
-            })
-            
-            successful_games += 1
-            
-            # Show some successful games so you know it's working
-            if successful_games <= 5 or successful_games % 50 == 0:
-                logger.info(f"   ✅ Game {successful_games}: {t1_name} vs {t2_name}")
-            
-            # Safety save every 100 games
-            if len(new_rows) >= 200:
-                df_safe = pd.DataFrame(new_rows)
-                mode = 'a' if os.path.exists(OUTPUT_FILE) else 'w'
-                header = not os.path.exists(OUTPUT_FILE)
-                df_safe.to_csv(OUTPUT_FILE, mode=mode, header=header, index=False)
-                logger.info(f"💾 Safety save: {len(new_rows)} rows")
-                new_rows = []
-        
-        except Exception as e:
-            failed_games += 1
-            if failed_games <= 10:
-                logger.warning(f"⚠️ Error on game {gid}: {e}")
-            continue
-        
-        time.sleep(REQUEST_DELAY)
-    
-    # Final save
-    if new_rows:
-        df = pd.DataFrame(new_rows)
-        mode = 'a' if os.path.exists(OUTPUT_FILE) else 'w'
-        header = not os.path.exists(OUTPUT_FILE)
-        df.to_csv(OUTPUT_FILE, mode=mode, header=header, index=False)
-        logger.info(f"💾 Final save: {len(new_rows)} rows")
-    
-    # Summary
-    logger.info("\n" + "="*70)
-    logger.info("🏁 SCRAPING COMPLETE")
-    logger.info("="*70)
-    logger.info(f"✅ Successful games: {successful_games}")
-    logger.info(f"❌ Failed games: {failed_games}")
-    logger.info(f"📊 Success rate: {(successful_games/(successful_games+failed_games)*100):.1f}%")
-    logger.info(f"📁 Output file: {OUTPUT_FILE}")
-    logger.info("="*70 + "\n")
+        if len(results) % 10 == 0:
+            pd.DataFrame(results).to_csv(OUTPUT_FILE, index=False)
+
+    pd.DataFrame(results).to_csv(OUTPUT_FILE, index=False)
+    logger.info(f"✅ DONE. Saved {len(results)} records to {OUTPUT_FILE}")
 
 if __name__ == "__main__":
-    # Uncomment this to test a specific game:
-    # test_single_game("401729314")  # Replace with actual game ID
-    
     main()

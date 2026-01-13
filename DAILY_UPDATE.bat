@@ -1,35 +1,26 @@
 @echo off
-title The Lab - V10 Automated Pipeline
+title The Bible V10.1 - Daily Cloud Deploy
 color 0A
 
 echo.
-echo ==============================================================================
-echo [1/4] Running V10 Data Pipeline (Steps 1-4)...
-echo       (Scraping Games, calculating Efficiency & SOS)
-echo ==============================================================================
-python 05_run_pipeline.py
-
+echo ========================================================
+echo   THE BIBLE V10.1 - DAILY UPDATE PROTOCOL
+echo ========================================================
 echo.
-echo ==============================================================================
-echo [2/4] Running ESPN Shot Quality Scraper...
-echo ==============================================================================
-python 1_Data_Miner.py
 
+:: 1. Run the Python Data Refresh
+echo [1/2] Updating Data & Models...
+python DAILY_REFRESH.py
+
+:: 2. Push to GitHub (Triggers Streamlit Cloud Update)
 echo.
-echo ==============================================================================
-echo [3/4] Bundling Files for The Lab...
-echo ==============================================================================
+echo [2/2] Pushing to Streamlit Cloud...
 git add .
+git commit -m "Daily V10.1 Update: %date%"
+git push origin main
 
 echo.
-echo ==============================================================================
-echo [4/4] Deploying to Cloud...
-echo ==============================================================================
-git commit -m "Daily V10 Update: %date% %time%"
-git push -u origin main
-
-echo.
-echo ==============================================================================
-echo SUCCESS! The Lab is live with fresh V10 Data.
-echo ==============================================================================
+echo ========================================================
+echo   SUCCESS! App is updating on mobile.
+echo ========================================================
 pause

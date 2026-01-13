@@ -175,3 +175,13 @@ Illinois Fighting Illini          45.7         58.9
      Michigan Wolverines          45.9         60.2
 [19:20:49] 
 🏁 COMPLETE in 244.8 seconds (4.1 minutes)
+[20:32:26] 
+============================================================
+[20:32:26] 🚀 ESPN SCRAPER V2.3 (DOUBLE TURBO)
+[20:32:26] ============================================================
+[20:32:26] 📅 Building schedule from 2025-11-02 to 2026-01-11...
+[20:32:26]    ⚡ Scanning 71 days of calendars in parallel...
+[20:32:32] ✅ Schedule built: Found 3326 completed games
+[20:32:32] ⚡ Downloading shot data for 3326 games...
+[20:32:41]    ✓ 100/3326 games processed... (16,515 shots)
+[20:32:50]    ✓ 200/3326 games processed... (32,755 shots)
